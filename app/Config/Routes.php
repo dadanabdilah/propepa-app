@@ -29,9 +29,10 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);
+$routes->post('/', '\CodeIgniter\Shield\Controllers\LoginController::loginAction');
 
-service('auth')->routes($routes);
+service('auth')->routes($routes, ['except' => ['register']]);
 
 /*
  * --------------------------------------------------------------------
