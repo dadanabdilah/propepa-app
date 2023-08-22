@@ -29,10 +29,13 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);
-$routes->post('/', '\CodeIgniter\Shield\Controllers\LoginController::loginAction');
+$routes->get('/', 'Auth\LoginController::loginView', ['as' => 'login']);
+$routes->post('/', 'Auth\LoginController::loginAction');
 
-service('auth')->routes($routes, ['except' => ['register']]);
+$routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($routes) {
+    // Dashboard
+    $routes->get('dashboard', 'DashboardController::index');
+});
 
 /*
  * --------------------------------------------------------------------
