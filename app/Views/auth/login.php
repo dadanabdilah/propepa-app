@@ -17,10 +17,12 @@
                 <div class="col-md-8 col-lg-6 col-xxl-3">
                     <div class="card mb-0">
                         <div class="card-body">
-                            <a href="./index.html" class="text-nowrap logo-img text-center d-block mb-5 w-100">
+                            <a href="#" class="text-nowrap logo-img text-center d-block mb-5 w-100">
                                 <h2><b>PROPEPA</b></h2>
                             </a>
-                            <form>
+                            <form action="<?= site_url('/') ?>" method="POST">
+                                <?= csrf_field() ?>
+
                                 <?php if (session('error') !== null) : ?>
                                     <div class="alert alert-danger" role="alert"><?= session('error') ?></div>
                                 <?php endif ?>
@@ -30,23 +32,14 @@
                                 <?php endif ?>
 
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username..." value="<?= old('username') ?>" autofocus="" autocomplete="off" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password..." value="" autocomplete="off" required>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                                        <label class="form-check-label text-dark" for="flexCheckChecked">
-                                            Remeber this Device
-                                        </label>
-                                    </div>
-                                    <a class="text-primary fw-medium" href="./authentication-forgot-password.html">Forgot Password ?</a>
-                                </div>
-                                <a href="./dashboard.html" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</a>
+                                <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</button>
                             </form>
                         </div>
                     </div>
