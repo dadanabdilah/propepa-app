@@ -39,6 +39,7 @@ $routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($rou
     $routes->get('dashboard', 'DashboardController::index');
 
     // Users
+    $routes->post('users/(:num)/status', 'UserController::status/$1');
     $routes->resource("users", ['controller' => 'UserController', 'except' => 'show']);
 });
 

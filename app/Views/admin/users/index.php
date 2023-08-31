@@ -66,13 +66,19 @@ Data Pengguna
                                         <td width="20%">
                                             <div class="action-btn">
                                                 <?php if ($user->active == '0') : ?>
-                                                    <a href="<?= site_url('admin/users/' . $user->id . '/active') ?>" class="btn btn-success" data-bs-toggle="tooltip" title="Aktifkan Akun">
-                                                        <i class="ti ti-check"></i>
-                                                    </a>
+                                                    <form action="<?= site_url('admin/users/' . $user->id . '/status') ?>" method="POST">
+                                                        <?= csrf_field() ?>
+                                                        <button type="submit" class="btn btn-success" data-bs-toggle="tooltip" title="Aktifkan Akun">
+                                                            <i class="ti ti-check"></i>
+                                                        </button>
+                                                    </form>
                                                 <?php else : ?>
-                                                    <a href="<?= site_url('admin/users/' . $user->id . '/active') ?>" class="btn btn-info" data-bs-toggle="tooltip" title="Nonaktifkan Akun">
-                                                        <i class="ti ti-forbid-2"></i>
-                                                    </a>
+                                                    <form action="<?= site_url('admin/users/' . $user->id . '/status') ?>" method="POST">
+                                                        <?= csrf_field() ?>
+                                                        <button type="submit" class="btn btn-info" data-bs-toggle="tooltip" title="Nonaktifkan Akun">
+                                                            <i class="ti ti-forbid-2"></i>
+                                                        </button>
+                                                    </form>
                                                 <?php endif ?>
                                                 <a href="<?= site_url('admin/users/' . $user->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
                                                     <i class="ti ti-pencil fs-5"></i>

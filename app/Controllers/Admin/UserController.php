@@ -193,6 +193,25 @@ class UserController extends ResourceController
         return redirect()->to('admin/users');
     }
 
+    public function status($id = null)
+    {
+        $user = $this->model->find($id);
+
+        if ($user->active == 0) {
+            $result = $this->model->update($id, ['active' => 1]);
+        } else {
+            $result = $this->model->update($id, ['active' => 0]);
+        }
+
+        if ($result) {
+            session()->setFlashdata('message', 'Mengubah Status Data Pengguna Berhasil');
+        } else {
+            session()->setFlashdata('error', 'Mengubah Status Data Pengguna Tidak Berhasil');
+        }
+
+        return redirect()->to('admin/users');
+    }
+
     private function getHashOptions(): array
     {
         if (
