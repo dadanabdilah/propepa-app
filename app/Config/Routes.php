@@ -35,6 +35,9 @@ $routes->post('/', 'Auth\LoginController::loginAction');
 $routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($routes) {
     // Dashboard
     $routes->get('dashboard', 'DashboardController::index');
+
+    // Users
+    $routes->resource("users", ['controller' => 'UserController', 'except' => 'show']);
 });
 
 /*
