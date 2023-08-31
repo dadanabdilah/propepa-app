@@ -3,7 +3,7 @@
 
 <head>
     <!--  Title -->
-    <title>Propepa Course</title>
+    <title><?= $this->renderSection('title') ?> | Propepa Course</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,10 +13,13 @@
     <meta name="author" content="" />
     <meta name="keywords" content="Propepa Course" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     <!--  Favicon -->
     <link rel="shortcut icon" type="image/png" href="<?= base_url('assets/images/logos/favicon.ico') ?>" />
-    <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="<?= base_url('assets/libs/owl.carousel/dist/owl.carousel.min.css') ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/libs/sweetalert2/sweetalert2.min.css') ?>">
 
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="<?= base_url('assets/css/styles.min.css') ?>" />
@@ -71,7 +74,7 @@
 
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./pengguna.html" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= site_url('admin/users') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-aperture"></i>
                                 </span>
@@ -249,78 +252,7 @@
             </header>
             <!--  Header End -->
             <div class="container-fluid">
-                <!--  Row 2 -->
-                <div class="row">
-                    <!-- Project -->
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <!-- Students -->
-                            <div class="col-sm-6">
-                                <div class="card">
-                                    <div class="card-body pb-0 mb-xxl-4 pb-1">
-                                        <p class="mb-1 fs-3">Students</p>
-                                        <h4 class="fw-semibold fs-7">36,358</h4>
-                                        <div class="d-flex align-items-center mb-3">
-                                            <span class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                                                <i class="ti ti-arrow-down-right text-danger"></i>
-                                            </span>
-                                            <p class="text-dark fs-3 mb-0">+9%</p>
-                                        </div>
-                                    </div>
-                                    <div id="customers"></div>
-                                </div>
-                            </div>
-                            <!-- Class -->
-                            <div class="col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p class="mb-1 fs-3">Class</p>
-                                        <h4 class="fw-semibold fs-7">78,298</h4>
-                                        <div class="d-flex align-items-center mb-3">
-                                            <span class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                                                <i class="ti ti-arrow-up-left text-success"></i>
-                                            </span>
-                                            <p class="text-dark fs-3 mb-0">+9%</p>
-                                        </div>
-                                        <div id="projects"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Reviewer -->
-                            <div class="col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p class="mb-1 fs-3">Reviewer</p>
-                                        <h4 class="fw-semibold fs-7">78,298</h4>
-                                        <div class="d-flex align-items-center mb-3">
-                                            <span class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                                                <i class="ti ti-arrow-up-left text-success"></i>
-                                            </span>
-                                            <p class="text-dark fs-3 mb-0">+9%</p>
-                                        </div>
-                                        <div id="projects"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Course -->
-                            <div class="col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p class="mb-1 fs-3">Course</p>
-                                        <h4 class="fw-semibold fs-7">78,298</h4>
-                                        <div class="d-flex align-items-center mb-3">
-                                            <span class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                                                <i class="ti ti-arrow-up-left text-success"></i>
-                                            </span>
-                                            <p class="text-dark fs-3 mb-0">+9%</p>
-                                        </div>
-                                        <div id="projects"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?= $this->renderSection('content') ?>
             </div>
         </div>
 
@@ -334,10 +266,39 @@
         <script src="<?= base_url('assets/js/app-style-switcher.js') ?>"></script>
         <script src="<?= base_url('assets/js/sidebarmenu.js') ?>"></script>
         <script src="<?= base_url('assets/js/custom.js') ?>"></script>
-        <!--  current page js files -->
-        <script src="<?= base_url('assets/libs/owl.carousel/dist/owl.carousel.min.js') ?>"></script>
-        <script src="<?= base_url('assets/libs/apexcharts/dist/apexcharts.min.js') ?>"></script>
-        <script src="<?= base_url('assets/js/dashboard.js') ?>"></script>
+
+        <script src="<?= base_url('assets/libs/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
+        <script src="<?= base_url('assets/js/datatable/datatable-basic.init.js') ?>"></script>
+
+        <script src="<?= base_url('assets/js/toastr-init.js') ?>"></script>
+        <script src="<?= base_url('assets/libs/sweetalert2/sweetalert2.min.js') ?>"></script>
+
+        <?php if (session('message') !== null) : ?>
+            <script>
+                toastr.success(
+                    "<?= session('message') ?>",
+                    "Berhasil!", {
+                        showMethod: "fadeIn",
+                        hideMethod: "fadeOut",
+                        timeOut: 2000
+                    }
+                );
+            </script>
+        <?php endif ?>
+
+        <?php if (session('error') !== null) : ?>
+            <script>
+                toastr.error(
+                    "<?= session('message') ?>",
+                    "Gagal!", {
+                        showMethod: "fadeIn",
+                        hideMethod: "fadeOut",
+                        timeOut: 2000
+                    }
+                );
+            </script>
+        <?php endif ?>
+        <?= $this->renderSection('js') ?>
 </body>
 
 </html>
