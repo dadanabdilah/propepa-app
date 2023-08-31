@@ -14,7 +14,7 @@
     <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
         <div class="d-flex align-items-center justify-content-center w-100">
             <div class="row justify-content-center w-100">
-                <div class="col-md-8 col-lg-6 col-xxl-3">
+                <div class="col-md-12 col-lg-12 col-xxl-6">
                     <div class="card mb-0">
                         <div class="card-body">
                             <a href="#" class="text-nowrap logo-img text-center d-block mb-5 w-100">
@@ -32,8 +32,8 @@
                                 <?php endif ?>
 
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username..." value="<?= old('username') ?>" autofocus="" autocomplete="off" required>
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email..." value="<?= old('email') ?>" autofocus="" autocomplete="off" required>
                                 </div>
                                 <div class="mb-4">
                                     <label for="password" class="form-label">Password</label>

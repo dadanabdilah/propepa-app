@@ -90,7 +90,7 @@ class UserController extends ResourceController
             'whatsapp_number' => $this->request->getPost('whatsapp_number'),
             'address' => $this->request->getPost('address'),
             'secret' => $this->request->getPost('email'),
-            'secret2' => password_hash(base64_encode(hash('sha384', $this->request->getPost('password'), true)), PASSWORD_DEFAULT)
+            'secret2' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT, $this->getHashOptions())
         ];
 
         $this->UserIdentity->save($requestIdentity);
@@ -157,7 +157,7 @@ class UserController extends ResourceController
 
         if (!empty($this->request->getPost('password'))) {
             $requestIdentity += [
-                'secret2' => password_hash(base64_encode(hash('sha384', $this->request->getPost('password'), true)), PASSWORD_DEFAULT)
+                'secret2' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT, $this->getHashOptions())
             ];
         }
 
@@ -191,5 +191,23 @@ class UserController extends ResourceController
         }
 
         return redirect()->to('admin/users');
+    }
+
+    private function getHashOptions(): array
+    {
+        if (
+            (defined('PASSWORD_ARGON2I') && PASSWORD_DEFAULT === PASSWORD_ARGON2I)
+            || (defined('PASSWORD_ARGON2ID') && PASSWORD_DEFAULT === PASSWORD_ARGON2ID)
+        ) {
+            return [
+                'memory_cost' => $this->config->hashMemoryCost,
+                'time_cost'   => $this->config->hashTimeCost,
+                'threads'     => $this->config->hashThreads,
+            ];
+        }
+
+        return [
+            'cost' => 10,
+        ];
     }
 }
