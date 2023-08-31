@@ -40,24 +40,44 @@ Data Pengguna
                         <table id="config-table" class="table border display table-bordered table-striped no-wrap">
                             <thead>
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>Nama Pengguna</th>
-                                    <th>Hak Akses</th>
+                                    <th>No</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Email</th>
+                                    <th>Level</th>
+                                    <th>Instansi</th>
+                                    <th>No Whatsapp</th>
+                                    <th>Alamat</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($users as $user) : ?>
+                                <?php $i = 1;
+                                foreach ($users as $user) : ?>
                                     <tr>
+                                        <td><?= $i++ ?></td>
                                         <td><?= $user->name ?></td>
-                                        <td><?= $user->username ?></td>
-                                        <td><?= $user->group ?></td>
-                                        <td>
+                                        <td><?= $user->secret ?></td>
+                                        <td><?= position($user->group) ?></td>
+                                        <td><?= $user->institution ?></td>
+                                        <td><?= $user->whatsapp_number ?></td>
+                                        <td><?= $user->address ?></td>
+                                        <td><?= $user->active == '0' ? 'Nonaktif' : 'Aktif' ?></td>
+                                        <td width="20%">
                                             <div class="action-btn">
-                                                <a href="<?= site_url('admin/users/' . $user->id . '/edit') ?>" class="text-info edit">
+                                                <?php if ($user->active == '0') : ?>
+                                                    <a href="<?= site_url('admin/users/' . $user->id . '/active') ?>" class="btn btn-success" data-bs-toggle="tooltip" title="Aktifkan Akun">
+                                                        <i class="ti ti-check"></i>
+                                                    </a>
+                                                <?php else : ?>
+                                                    <a href="<?= site_url('admin/users/' . $user->id . '/active') ?>" class="btn btn-info" data-bs-toggle="tooltip" title="Nonaktifkan Akun">
+                                                        <i class="ti ti-forbid-2"></i>
+                                                    </a>
+                                                <?php endif ?>
+                                                <a href="<?= site_url('admin/users/' . $user->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
                                                     <i class="ti ti-pencil fs-5"></i>
                                                 </a>
-                                                <a href="javascript:void(0)" class="text-danger delete ms-2 delete-confirm" data-action="<?= site_url('admin/users/' . $user->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>">
+                                                <a href="javascript:void(0)" class="btn btn-danger delete-confirm" data-action="<?= site_url('admin/users/' . $user->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
                                                     <i class="ti ti-trash fs-5"></i>
                                                 </a>
                                             </div>

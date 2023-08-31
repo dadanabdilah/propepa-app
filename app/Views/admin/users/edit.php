@@ -31,9 +31,27 @@ Edit Data Pengguna
                         </div>
                     </div>
                     <div class="mb-4 row align-items-center">
-                        <label class="form-label fw-semibold col-sm-3 col-form-label">Nama Pengguna</label>
+                        <label class="form-label fw-semibold col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="username" placeholder="Nama Pengguna" value="<?= $user->username ?? old('username') ?>" required>
+                            <input type="text" class="form-control" name="email" placeholder="Email" value="<?= $user->secret ?? old('email') ?>" required>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label fw-semibold col-sm-3 col-form-label">Instansi</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="institution" placeholder="Instansi" value="<?= $user->institution ?? old('institution') ?>" required>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label fw-semibold col-sm-3 col-form-label">Nomor Whatsapp</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="whatsapp_number" placeholder="Nomor Whatsapp" value="<?= $user->whatsapp_number ?? old('whatsapp_number') ?>" required>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label fw-semibold col-sm-3 col-form-label">Alamat</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="address" placeholder="Alamat" value="<?= $user->address ?? old('address') ?>" required>
                         </div>
                     </div>
                     <div class="mb-4 row align-items-center">
