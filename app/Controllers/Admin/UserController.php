@@ -214,17 +214,6 @@ class UserController extends ResourceController
 
     private function getHashOptions(): array
     {
-        if (
-            (defined('PASSWORD_ARGON2I') && PASSWORD_DEFAULT === PASSWORD_ARGON2I)
-            || (defined('PASSWORD_ARGON2ID') && PASSWORD_DEFAULT === PASSWORD_ARGON2ID)
-        ) {
-            return [
-                'memory_cost' => $this->config->hashMemoryCost,
-                'time_cost'   => $this->config->hashTimeCost,
-                'threads'     => $this->config->hashThreads,
-            ];
-        }
-
         return [
             'cost' => 10,
         ];
