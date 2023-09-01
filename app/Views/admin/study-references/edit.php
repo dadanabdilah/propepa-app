@@ -43,7 +43,7 @@ Edit Data Referensi Belajar
                         </div>
                     </div>
                     <div class="mb-4 row align-items-center">
-                        <label class="form-label fw-semibold col-sm-3 col-form-label">Deskripsi</label>
+                        <label class="form-label fw-semibold col-sm-3 col-form-label">Kategori Referensi Belajar</label>
                         <div class="col-sm-9">
                             <select class="form-control" name="category_reference_id" required>
                                 <option value="" selected disabled>-- Pilih --</option>
