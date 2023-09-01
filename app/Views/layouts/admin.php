@@ -83,6 +83,16 @@
                         </li>
 
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('admin/study-modules') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Modul Belajar</span>
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="<?= site_url('admin/users') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-aperture"></i>
