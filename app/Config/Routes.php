@@ -51,6 +51,9 @@ $routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($rou
     $routes->resource("study-modules", ['controller' => 'StudyModuleController', 'except' => 'show']);
 
     $routes->resource("opinions", ['controller' => 'OpinionController', 'except' => 'show']);
+
+    $routes->put('study-communities', 'StudyCommunityController::update');
+    $routes->resource("study-communities", ['controller' => 'StudyCommunityController', 'except' => 'show', 'update']);
 });
 
 /*

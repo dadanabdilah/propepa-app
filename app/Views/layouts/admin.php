@@ -100,6 +100,15 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('admin/study-communities') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Komunitas Belajar</span>
+                            </a>
+                        </li>
+
 
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="<?= site_url('admin/users') ?>" aria-expanded="false">
