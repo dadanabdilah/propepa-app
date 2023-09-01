@@ -49,6 +49,8 @@ $routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($rou
     $routes->resource("category-modules", ['controller' => 'CategoryModuleController', 'except' => 'show']);
 
     $routes->resource("study-modules", ['controller' => 'StudyModuleController', 'except' => 'show']);
+
+    $routes->resource("opinions", ['controller' => 'OpinionController', 'except' => 'show']);
 });
 
 /*
