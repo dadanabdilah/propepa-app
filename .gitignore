@@ -129,3 +129,6 @@ nb-configuration.xml
 
 public/assets/images/category-references/*
 !public/assets/images/category-references/.gitkeep
+
+public/assets/images/category-modules/*
+!public/assets/images/category-modules/.gitkeep
