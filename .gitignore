@@ -125,3 +125,7 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+.vscode
+
+public/assets/images/category-references/*
+!public/assets/images/category-references/.gitkeep
