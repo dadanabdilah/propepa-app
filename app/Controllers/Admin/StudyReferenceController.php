@@ -67,12 +67,7 @@ class StudyReferenceController extends ResourceController
             return redirect()->back()->withInput();
         }
 
-        $result = StudyReferenceModel::create([
-            'title' => $this->request->getPost('title'),
-            'url_video' => $this->request->getPost('url_video'),
-            'description' => $this->request->getPost('description'),
-            'category_reference_id' => $this->request->getPost('category_reference_id')
-        ]);
+        $result = StudyReferenceModel::create($this->request->getPost());
 
         if ($result) {
             session()->setFlashdata('message', 'Tambah Data Referensi Belajar Berhasil');
@@ -118,12 +113,7 @@ class StudyReferenceController extends ResourceController
 
         $studyReference = StudyReferenceModel::find($id);
 
-        $result = $studyReference->update([
-            'title' => $this->request->getPost('title'),
-            'url_video' => $this->request->getPost('url_video'),
-            'description' => $this->request->getPost('description'),
-            'category_reference_id' => $this->request->getPost('category_reference_id')
-        ]);
+        $result = $studyReference->update($this->request->getPost());
 
         if ($result) {
             session()->setFlashdata('message', 'Edit Data Referensi Belajar Berhasil');

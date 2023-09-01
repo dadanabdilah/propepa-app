@@ -65,12 +65,7 @@ class StudyModuleController extends ResourceController
             return redirect()->back()->withInput();
         }
 
-        $result = StudyModuleModel::create([
-            'title' => $this->request->getPost('title'),
-            'url_module' => $this->request->getPost('url_module'),
-            'description' => $this->request->getPost('description'),
-            'category_module_id' => $this->request->getPost('category_module_id')
-        ]);
+        $result = StudyModuleModel::create($this->request->getPost());
 
         if ($result) {
             session()->setFlashdata('message', 'Tambah Data Modul Belajar Berhasil');
@@ -116,12 +111,7 @@ class StudyModuleController extends ResourceController
 
         $studyModule = StudyModuleModel::find($id);
 
-        $result = $studyModule->update([
-            'title' => $this->request->getPost('title'),
-            'url_module' => $this->request->getPost('url_module'),
-            'description' => $this->request->getPost('description'),
-            'category_module_id' => $this->request->getPost('category_module_id')
-        ]);
+        $result = $studyModule->update($this->request->getPost());
 
         if ($result) {
             session()->setFlashdata('message', 'Edit Data Modul Belajar Berhasil');
