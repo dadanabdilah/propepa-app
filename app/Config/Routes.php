@@ -41,6 +41,10 @@ $routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($rou
     // Users
     $routes->post('users/(:num)/status', 'UserController::status/$1');
     $routes->resource("users", ['controller' => 'UserController', 'except' => 'show']);
+
+    $routes->resource("category-references", ['controller' => 'CategoryReferenceController', 'except' => 'show']);
+
+    $routes->resource("study-references", ['controller' => 'StudyReferenceController', 'except' => 'show']);
 });
 
 /*
