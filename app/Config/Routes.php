@@ -54,6 +54,8 @@ $routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($rou
 
     $routes->put('study-communities', 'StudyCommunityController::update');
     $routes->resource("study-communities", ['controller' => 'StudyCommunityController', 'except' => 'show', 'update']);
+
+    $routes->resource("sharing-practices", ['controller' => 'SharingPracticeController', 'except' => 'show']);
 });
 
 /*
