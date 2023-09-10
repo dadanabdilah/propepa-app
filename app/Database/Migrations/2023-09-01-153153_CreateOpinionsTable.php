@@ -16,8 +16,7 @@ class CreateOpinionsTable extends Migration
                 'auto_increment' => true,
             ],
             'opinion' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '191',
+                'type'       => 'TEXT',
                 'null'      => true
             ],
             'user_id' => [
