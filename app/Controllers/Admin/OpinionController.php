@@ -6,6 +6,8 @@ use CodeIgniter\RESTful\ResourceController;
 
 use App\Models\OpinionModel;
 
+use Pusher\Pusher;
+
 class OpinionController extends ResourceController
 {
     /**
@@ -16,7 +18,8 @@ class OpinionController extends ResourceController
     public function index()
     {
         $data = [
-            'opinions' => OpinionModel::with('User')->get()
+            'opinions' => OpinionModel::with('User')->get(),
+            'PUSHER_APP_KEY' => env('PUSHER_APP_KEY')
         ];
 
         return view('admin/opinions/index', $data);
@@ -49,7 +52,28 @@ class OpinionController extends ResourceController
      */
     public function create()
     {
-        //
+        OpinionModel::create([
+            'opinion' => $this->request->getPost('opinion'),
+            'user_id' => auth()->id()
+        ]);
+
+        $data = [
+            'opinions' => OpinionModel::with('User')->latest()->first()
+        ];
+
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+
+        $pusher->trigger('my-channel', 'my-event', $data);
     }
 
     /**
