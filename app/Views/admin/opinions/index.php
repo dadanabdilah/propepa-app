@@ -5,14 +5,14 @@ Berbagi Opini
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+<div class="card bg-light-danger shadow-none position-relative overflow-hidden">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
                 <h4 class="fw-semibold mb-8">Berbagi Opini</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-muted " href="./index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a class="text-muted " href="<?= site_url('admin/dashboard') ?>">Dashboard</a></li>
                         <li class="breadcrumb-item" aria-current="page">Berbagi Opini</li>
                     </ol>
                 </nav>
@@ -51,7 +51,7 @@ Berbagi Opini
                                             <?php if ($opinion->user_id == auth()->id()) : ?>
                                                 <div class="hstack gap-3 align-items-start mb-7 justify-content-end">
                                                     <div class="text-end">
-                                                        <div class="p-2 bg-light-info text-dark rounded-1 d-inline-block fs-3"> <?= $opinion->opinion ?></div>
+                                                        <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> <?= $opinion->opinion ?></div>
                                                     </div>
                                                 </div>
                                             <?php endif ?>
@@ -147,7 +147,7 @@ Berbagi Opini
 
             ${data.opinions.user_id == userId ? `<div class="hstack gap-3 align-items-start mb-7 justify-content-end">
                     <div class="text-end">
-                        <div class="p-2 bg-light-info text-dark rounded-1 d-inline-block fs-3"> ${data.opinions.opinion}</div>
+                        <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> ${data.opinions.opinion}</div>
                     </div>
                 </div>` : '' }
            `

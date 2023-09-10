@@ -79,7 +79,7 @@ Edit Data Praktik Berbagi
                     <div class="row">
                         <div class="col-sm-3"></div>
                         <div class="col-sm-9">
-                            <BUtton class="btn btn-primary">Submit</BUtton>
+                            <BUtton class="btn btn-danger">Submit</BUtton>
                         </div>
                     </div>
                 </form>

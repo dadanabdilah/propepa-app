@@ -5,14 +5,14 @@ Data Referensi Belajar
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+<div class="card bg-light-danger shadow-none position-relative overflow-hidden">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
                 <h4 class="fw-semibold mb-8">Kelola Referensi Belajar</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-muted " href="./index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a class="text-muted " href="<?= site_url('admin/dashboard') ?>">Dashboard</a></li>
                         <li class="breadcrumb-item" aria-current="page">Kelola Referensi Belajar</li>
                     </ol>
                 </nav>
@@ -31,8 +31,8 @@ Data Referensi Belajar
     <div class="row">
         <div class="col-12">
             <div class="mb-2">
-                <a href="<?= site_url('admin/study-references/new') ?>" class="btn btn-primary">Tambah +</a>
-                <a href="<?= site_url('admin/category-references') ?>" class="btn btn-outline-primary ms-2">Kategori Referensi</a>
+                <a href="<?= site_url('admin/study-references/new') ?>" class="btn btn-danger">Tambah +</a>
+                <a href="<?= site_url('admin/category-references') ?>" class="btn btn-outline-danger ms-2">Kategori Referensi</a>
             </div>
 
             <div class="card">

@@ -5,14 +5,14 @@ Data Kategori Modul
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+<div class="card bg-light-danger shadow-none position-relative overflow-hidden">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
                 <h4 class="fw-semibold mb-8">Kelola Kategori Modul</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-muted " href="./index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a class="text-muted " href="<?= site_url('admin/dashboard') ?>">Dashboard</a></li>
                         <li class="breadcrumb-item" aria-current="page">Kelola Kategori Modul</li>
                     </ol>
                 </nav>
@@ -31,7 +31,7 @@ Data Kategori Modul
     <div class="row">
         <div class="col-12">
             <div class="mb-2">
-                <a href="<?= site_url('admin/category-modules/new') ?>" class="btn btn-primary">Tambah +</a>
+                <a href="<?= site_url('admin/category-modules/new') ?>" class="btn btn-danger">Tambah +</a>
             </div>
 
             <div class="card">
