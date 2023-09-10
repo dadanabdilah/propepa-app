@@ -56,6 +56,8 @@ $routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($rou
     $routes->resource("study-communities", ['controller' => 'StudyCommunityController', 'except' => 'show', 'update']);
 
     $routes->resource("sharing-practices", ['controller' => 'SharingPracticeController', 'except' => 'show']);
+
+    $routes->resource("profile", ['controller' => 'ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
 });
 
 /*
