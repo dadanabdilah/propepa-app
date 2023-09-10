@@ -43,12 +43,19 @@ class UserTableSeeder extends Seeder
                 'type' => 'email_password',
                 'name' => 'Admin',
                 'secret' => 'admin@gmail.com',
-                'secret2' => password_hash(base64_encode(hash('sha384', '123456789', true)), PASSWORD_DEFAULT),
+                'secret2' => password_hash('123456789', PASSWORD_DEFAULT, $this->getHashOptions()),
                 'created_at' => $now,
                 'updated_at' => $now
             ]
         ];
 
         $userIdentityModel->insertBatch($userIdentities);
+    }
+
+    private function getHashOptions(): array
+    {
+        return [
+            'cost' => 10,
+        ];
     }
 }
