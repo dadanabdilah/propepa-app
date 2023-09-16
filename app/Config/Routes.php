@@ -29,7 +29,36 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);
+$routes->post('/', '\CodeIgniter\Shield\Controllers\LoginController::loginAction');
+
+\Config\Services::auth()->routes($routes, ['except' => ['register']]);
+
+$routes->group("admin", ["filter" => "visits", "namespace" => "App\Controllers\Admin"], function ($routes) {
+    // Dashboard
+    $routes->get('dashboard', 'DashboardController::index');
+
+    // Users
+    $routes->post('users/(:num)/status', 'UserController::status/$1');
+    $routes->resource("users", ['controller' => 'UserController', 'except' => 'show']);
+
+    $routes->resource("category-references", ['controller' => 'CategoryReferenceController', 'except' => 'show']);
+
+    $routes->resource("study-references", ['controller' => 'StudyReferenceController', 'except' => 'show']);
+
+    $routes->resource("category-modules", ['controller' => 'CategoryModuleController', 'except' => 'show']);
+
+    $routes->resource("study-modules", ['controller' => 'StudyModuleController', 'except' => 'show']);
+
+    $routes->resource("opinions", ['controller' => 'OpinionController', 'except' => 'show']);
+
+    $routes->put('study-communities', 'StudyCommunityController::update');
+    $routes->resource("study-communities", ['controller' => 'StudyCommunityController', 'except' => 'show', 'update']);
+
+    $routes->resource("sharing-practices", ['controller' => 'SharingPracticeController', 'except' => 'show']);
+
+    $routes->resource("profile", ['controller' => 'ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
+});
 
 /*
  * --------------------------------------------------------------------
