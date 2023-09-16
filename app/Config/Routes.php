@@ -34,7 +34,7 @@ $routes->post('/', '\CodeIgniter\Shield\Controllers\LoginController::loginAction
 
 \Config\Services::auth()->routes($routes, ['except' => ['register']]);
 
-$routes->group("admin", ["namespace" => "App\Controllers\Admin"], function ($routes) {
+$routes->group("admin", ["filter" => "visits", "namespace" => "App\Controllers\Admin"], function ($routes) {
     // Dashboard
     $routes->get('dashboard', 'DashboardController::index');
 
