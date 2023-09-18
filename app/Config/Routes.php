@@ -29,12 +29,28 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// Except admin auth
 $routes->get('/', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);
 $routes->post('/', '\CodeIgniter\Shield\Controllers\LoginController::loginAction');
 
-\Config\Services::auth()->routes($routes, ['except' => ['register']]);
+$routes->get('/register', 'Teacher\RegisterController::index', ['as' => 'register']);
+$routes->post('/register', 'Teacher\RegisterController::create');
 
-$routes->group("admin", ["filter" => "visits", "namespace" => "App\Controllers\Admin"], function ($routes) {
+$routes->get('/dashboard', 'Teacher\DashboardController::index');
+
+\Config\Services::auth()->routes($routes);
+
+$routes->group("admin", ["filter" => ["visits", "loginFilter"], "namespace" => "App\Controllers\Admin"], function ($routes) {
+    $routes->get('/', function () {
+        return redirect('admin/login');
+    });
+
+    // Admin auth
+    $routes->get('login', 'LoginController::loginView');
+    $routes->post('login', 'LoginController::loginAction');
+    $routes->get('logout', 'LoginController::logoutAction');
+
     // Dashboard
     $routes->get('dashboard', 'DashboardController::index');
 
@@ -58,6 +74,11 @@ $routes->group("admin", ["filter" => "visits", "namespace" => "App\Controllers\A
     $routes->resource("sharing-practices", ['controller' => 'SharingPracticeController', 'except' => 'show']);
 
     $routes->resource("profile", ['controller' => 'ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
+});
+
+$routes->group("teacher", ["filter" => "visits", "namespace" => "App\Controllers\Teacher"], function ($routes) {
+    // Dashboard
+    $routes->get('dashboard', 'DashboardController::index');
 });
 
 /*
