@@ -132,3 +132,5 @@ public/assets/images/category-references/*
 
 public/assets/images/category-modules/*
 !public/assets/images/category-modules/.gitkeep
+
+!public/assets/libs/*/dist
