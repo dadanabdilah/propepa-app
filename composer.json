@@ -7,7 +7,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "codeigniter4/framework": "^4.0",
-        "codeigniter4/shield": "^1.0@beta",
+        "codeigniter4/shield": "dev-develop",
         "illuminate/database": "^10.21",
         "pusher/pusher-php-server": "^7.2",
         "tatter/visits": "^2.0"

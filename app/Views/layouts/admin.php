@@ -116,7 +116,7 @@
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?= site_url('logout') ?>" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= site_url('admin/logout') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-door-exit"></i>
                                 </span>
