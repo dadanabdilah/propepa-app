@@ -137,7 +137,7 @@
                                                 </div>
                                             </div>
                                             <div class="message-body">
-                                                <a href="<?= site_url('admin/profile') ?>" class="py-8 px-7 mt-8 d-flex align-items-center">
+                                                <a href="<?= site_url('profile') ?>" class="py-8 px-7 mt-8 d-flex align-items-center">
                                                     <div class="w-100 d-inline-block v-middle">
                                                         <h6 class="mb-1 bg-hover-primary fw-semibold"> Edit Profil </h6>
                                                     </div>
