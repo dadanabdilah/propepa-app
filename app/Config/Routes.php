@@ -43,6 +43,7 @@ $routes->get('/dashboard', 'Teacher\DashboardController::index');
 
 $routes->resource("study-references", ['controller' => 'Teacher\StudyReferenceController']);
 $routes->resource("study-modules", ['controller' => 'Teacher\StudyModuleController']);
+$routes->resource("opinions", ['controller' => 'Teacher\OpinionController']);
 
 $routes->group("admin", ["filter" => ["visits", "loginFilter"], "namespace" => "App\Controllers\Admin"], function ($routes) {
     $routes->get('/', function () {

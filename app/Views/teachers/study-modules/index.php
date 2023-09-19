@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/admin') ?>
+<?= $this->extend('layouts/teacher') ?>
 
 <?= $this->section('title') ?>
 Modul Belajar
