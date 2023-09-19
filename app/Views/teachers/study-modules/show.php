@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/teacher') ?>
 
 <?= $this->section('title') ?>
-Referensi Belajar - <?= $categoryReference->name ?>
+Modul Belajar - <?= $categoryModule->name ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -9,12 +9,12 @@ Referensi Belajar - <?= $categoryReference->name ?>
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h4 class="fw-semibold mb-8"><?= $categoryReference->name ?></h4>
+                <h4 class="fw-semibold mb-8"><?= $categoryModule->name ?></h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a class="text-muted " href="<?= site_url('dashboard') ?>">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a class="text-muted " href="<?= site_url('study-references') ?>">Referensi Belajar</a></li>
-                        <li class="breadcrumb-item" aria-current="page"><?= $categoryReference->name ?></li>
+                        <li class="breadcrumb-item"><a class="text-muted " href="<?= site_url('study-modules') ?>">Modul Belajar</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><?= $categoryModule->name ?></li>
                     </ol>
                 </nav>
             </div>
@@ -30,19 +30,17 @@ Referensi Belajar - <?= $categoryReference->name ?>
 <section>
     <div class="col-lg-12">
         <div class="row">
-            <?php foreach ($studyReferences as $studyReference) : ?>
+            <?php foreach ($studyModules as $studyModule) : ?>
                 <div class="col-md-12">
                     <div class="card">
                         <div class="shadow card-body rounded">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="fw-bold"><?= $studyReference->title ?></h5>
-                                    <p><?= $studyReference->description ?></p>
+                                    <h5 class="fw-bold"><?= $studyModule->title ?></h5>
+                                    <p><?= $studyModule->description ?></p>
                                 </div>
                                 <div class="col">
-                                    <div class="ratio ratio-16x9">
-                                        <iframe src="<?= $studyReference->url_video ?>" title="YouTube video" allowfullscreen></iframe>
-                                    </div>
+                                    <a href="<?= $studyModule->url_module ?>" class="btn btn-primary d-block w-100" target="_blank">Download</a>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +48,7 @@ Referensi Belajar - <?= $categoryReference->name ?>
                 </div>
             <?php endforeach ?>
 
-            <?php if (count($studyReferences) == 0) : ?>
+            <?php if (count($studyModules) == 0) : ?>
                 <h4 class="text-center">Tidak ada data</h4>
             <?php endif ?>
         </div>
