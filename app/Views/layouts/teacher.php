@@ -61,6 +61,60 @@
                         </li>
 
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('study-references') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-layout-grid"></i>
+                                </span>
+                                <span class="hide-menu">Referensi Belajar</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('study-modules') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-file-description"></i>
+                                </span>
+                                <span class="hide-menu">Modul Belajar</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('opinions') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-message"></i>
+                                </span>
+                                <span class="hide-menu">Berbagi Opini</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('study-communities') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-mail"></i>
+                                </span>
+                                <span class="hide-menu">Komunitas Belajar</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('sharing-practices') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-chart-pie-2"></i>
+                                </span>
+                                <span class="hide-menu">Praktik Berbagi</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('profile') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-chart-pie-2"></i>
+                                </span>
+                                <span class="hide-menu">Lihat Profil</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="<?= site_url('logout') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-door-exit"></i>
