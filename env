@@ -146,5 +146,5 @@ PUSHER_APP_ID="xxxxx"
 PUSHER_APP_KEY="xxxxx"
 PUSHER_APP_SECRET="xxxxx"
 
-shieldoauthconfig.oauthconfigs.google.client_id = "xxxxx.apps.googleusercontent.com"
-shieldoauthconfig.oauthconfigs.google.client_secret = "xxxxx"
+Config\ShieldOAuthConfig.oauthConfigs.google.client_id = "xxxxx.apps.googleusercontent.com"
+Config\ShieldOAuthConfig.oauthConfigs.google.client_secret = "xxxxx"
