@@ -49,7 +49,7 @@ class RegisterController extends BaseController
 
         $request = [
             'username' => time(),
-            'active' => 0
+            'active' => 1
         ];
 
         $result = $this->UserModel->save($request);
@@ -76,12 +76,12 @@ class RegisterController extends BaseController
         $this->GroupModel->save($requestGroup);
 
         if ($result) {
-            session()->setFlashdata('message', 'Berhasil mendaftar, silahkan tunggu verifikasi akun dari admin');
+            session()->setFlashdata('message', 'Berhasil mendaftar, silahkan masuk');
         } else {
             session()->setFlashdata('error', 'Pendaftaran Tidak Berhasil');
         }
 
-        return redirect()->to('/');
+        return redirect()->to('/login');
     }
 
     private function getHashOptions(): array
