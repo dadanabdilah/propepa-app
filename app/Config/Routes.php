@@ -45,6 +45,12 @@ $routes->resource("study-references", ['controller' => 'Teacher\StudyReferenceCo
 $routes->resource("study-modules", ['controller' => 'Teacher\StudyModuleController']);
 $routes->resource("opinions", ['controller' => 'Teacher\OpinionController']);
 $routes->resource("study-communities", ['controller' => 'Teacher\StudyCommunityController']);
+$routes->get('/sharing-practices/new-module', 'Teacher\SharingPracticeController::newModule');
+$routes->get('/sharing-practices/new-video', 'Teacher\SharingPracticeController::newVideo');
+$routes->post('/sharing-practices/new-module', 'Teacher\SharingPracticeController::createModule');
+$routes->post('/sharing-practices/new-video', 'Teacher\SharingPracticeController::createVideo');
+$routes->resource("sharing-practices", ['controller' => 'Teacher\SharingPracticeController']);
+$routes->resource("profile", ['controller' => 'Teacher\ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
 
 $routes->group("admin", ["filter" => ["visits", "loginFilter"], "namespace" => "App\Controllers\Admin"], function ($routes) {
     $routes->get('/', function () {
