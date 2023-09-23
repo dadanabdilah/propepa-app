@@ -41,6 +41,10 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100 py-8 mb-2 rounded-2">Masuk</button>
                                 <a href="<?= site_url('/register') ?>" class="btn btn-outline-primary w-100 mb-4 rounded-2">Daftar</a>
+                                <a class="btn btn-white text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8" href="<?= site_url('/oauth/google') ?>" role="button">
+                                    <img src="<?= base_url('assets/images/svgs/google-icon.svg') ?>" alt="" class="img-fluid me-2" width="18" height="18">
+                                    <span class="d-none d-sm-block me-1 flex-shrink-0">Sign in with</span>Google
+                                </a>
                             </form>
                         </div>
                     </div>

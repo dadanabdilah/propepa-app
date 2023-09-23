@@ -142,6 +142,9 @@
 
 # curlrequest.shareOptions = true
 
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
+PUSHER_APP_ID="xxxxx"
+PUSHER_APP_KEY="xxxxx"
+PUSHER_APP_SECRET="xxxxx"
+
+shieldoauthconfig.oauthconfigs.google.client_id = "xxxxx.apps.googleusercontent.com"
+shieldoauthconfig.oauthconfigs.google.client_secret = "xxxxx"

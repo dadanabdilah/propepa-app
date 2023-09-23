@@ -8,7 +8,7 @@ Dashboard
 <div class="row">
     <div class="d-flex align-items-center gap-4 mb-4">
         <div>
-            <h3 class="fw-semibold">Halo, <span class="text-dark"><?= auth()->user()->identities[0]->name ?></span>
+            <h3 class="fw-semibold">Halo, <span class="text-dark"><?= auth()->user()->identities[0]->name ?? auth()->user()->first_name ?></span>
             </h3>
             <span>Selamat datang di dashboard propepa.</span>
         </div>
