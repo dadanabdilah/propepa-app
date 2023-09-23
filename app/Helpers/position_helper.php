@@ -1,15 +1,14 @@
 <?php
-	function position($value = null)
-	{
-		$position = [
-                'admin' => 'Admin',
-                'teacher' => 'Guru',
-                'student' => 'Pelajar'
-            ];
+function position($value = null)
+{
+    $position = [
+        'admin' => 'Admin',
+        'teacher' => 'Guru'
+    ];
 
-        if ($value == null) {
-            return $position;
-        } else {
-            return $position[$value];
-        } 
-	}
+    if ($value == null) {
+        return $position;
+    } else {
+        return $position[$value];
+    }
+}
