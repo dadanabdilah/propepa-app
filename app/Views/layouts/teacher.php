@@ -168,6 +168,18 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-center">
                                 <li class="nav-item dropdown">
+                                    <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="ti ti-bell-ringing"></i>
+                                    </a>
+                                    <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                                        <div class="d-flex align-items-center justify-content-between py-3 px-7">
+                                            <h5 class="mb-0 fs-5 fw-semibold">Notifikasi</h5>
+                                        </div>
+                                        <div class="message-body" id="notification" data-simplebar>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
                                     <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <div class="d-flex align-items-center">
                                             <div class="user-profile-img">
@@ -290,6 +302,54 @@
                     }
                 });
             });
+        </script>
+
+        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+        <script>
+            function bindWithChunking(channel, event, callback) {
+                channel.bind(event, callback);
+
+                var events = {};
+                channel.bind("chunked-" + event, data => {
+                    if (!events.hasOwnProperty(data.id)) {
+                        events[data.id] = {
+                            chunks: [],
+                            receivedFinal: false
+                        };
+                    }
+                    var ev = events[data.id];
+                    ev.chunks[data.index] = data.chunk;
+                    if (data.final) ev.receivedFinal = true;
+                    if (ev.receivedFinal && ev.chunks.length === Object.keys(ev.chunks).length) {
+                        callback(JSON.parse(ev.chunks.join("")));
+                        delete events[data.id];
+                    }
+                });
+            }
+
+            Pusher.logToConsole = true;
+
+            var pusher = new Pusher("<?= env('PUSHER_APP_KEY') ?>", {
+                cluster: 'ap1'
+            });
+
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+                let notifDOM = $('#notification').html();
+
+                let userId = <?= auth()->id() ?>;
+
+                notifDOM += `
+           ${data.opinions.user_id != userId ? `<a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
+                <div class="w-100 d-inline-block v-middle">
+                    <h6 class="mb-1 fw-semibold">${data.opinions.user.name}</h6>
+                    <span class="d-block">${data.opinions.opinion}</span>
+                    </div>
+                </a>` : ''}
+           `
+
+                $('#notification').html(notifDOM);
+            })
         </script>
 
         <?= $this->renderSection('js') ?>
