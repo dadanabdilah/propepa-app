@@ -107,13 +107,12 @@
         </section>
 
         <section class="about-us">
-            <div class="container">
-                <div class="row col-12 d-flex align-items-center text-center">
+            <div class="container pb-5">
+                <div class="row col-12 text-center mb-3">
                     <h1 class="mt-5">Tentang Kami</h1>
-
-                    <div class="ratio mt-3 mb-5" style="--bs-aspect-ratio: 50%;">
-                        <iframe src="<?= setting()->get('App.siteVideoURL') ?>" title="YouTube video" class="w-100"></iframe>
-                    </div>
+                </div>
+                <div class="ratio ratio-16x9">
+                    <iframe src="<?= setting()->get('App.siteVideoURL') ?>" title="YouTube video"></iframe>
                 </div>
             </div>
             <div class="d-none d-md-flex align-items-end">
