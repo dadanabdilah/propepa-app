@@ -50,7 +50,7 @@ $routes->group("/", ["filter" => ["visits"], "namespace" => "App\Controllers\Tea
 });
 
 $routes->group("/", ["filter" => ["visits", "loginFilter", "authFilter", "userFilter:teacher"], "namespace" => "App\Controllers\Teacher"], function ($routes) {
-    $routes->get('/dashboard', 'Teacher\DashboardController::index');
+    $routes->get('/dashboard', 'DashboardController::index');
     $routes->resource("study-references", ['controller' => 'StudyReferenceController']);
     $routes->resource("study-modules", ['controller' => 'StudyModuleController']);
     $routes->resource("opinions", ['controller' => 'OpinionController']);

@@ -18,7 +18,7 @@
                     <div class="card mb-0">
                         <div class="card-body">
                             <a href="#" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                                <h2><b>PROPEPA</b></h2>
+                                <h2><b><?= base_url() ?>assets/images/main/<?= setting()->get('App.siteLogo') ?> | MASUK</b></h2>
                             </a>
                             <form action="<?= site_url('/admin/login') ?>" method="POST">
                                 <?= csrf_field() ?>
