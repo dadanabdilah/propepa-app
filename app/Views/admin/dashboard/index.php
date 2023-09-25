@@ -18,7 +18,7 @@ Dashboard
             <div class="col-sm-3">
                 <div class="card bg-danger text-light">
                     <div class="card-body">
-                        <p class="mb-1 fs-3">Total User</p>
+                        <p class="mb-1 fs-3">Total Pengguna</p>
                         <h4 class="fw-semibold fs-7 text-light"><?= $countUsers ?></h4>
                     </div>
                 </div>
