@@ -3,15 +3,14 @@
 
 <head>
     <!--  Title -->
-    <title><?= $this->renderSection('title') ?> | Propepa Course</title>
+    <title><?= $this->renderSection('title') ?> | <?= setting()->get('App.siteName') ?>e</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="handheldfriendly" content="true" />
     <meta name="MobileOptimized" content="width" />
-    <meta name="description" content="Propepa Course" />
+    <meta name="description" content="<?= setting()->get('App.siteAbout') ?>" />
     <meta name="author" content="" />
-    <meta name="keywords" content="Propepa Course" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!--  Favicon -->
@@ -158,7 +157,7 @@
             <!--  Header Start -->
             <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <ul class="navbar-nav d-none d-lg-none d-md-block">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link sidebartoggler nav-icon-hover ms-n3" id="headerCollapse" href="javascript:void(0)">
                                 <i class="ti ti-menu-2"></i>
