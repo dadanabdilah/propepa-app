@@ -1,5 +1,9 @@
 <?= $this->extend('layouts/auth') ?>
 
+<?= $this->section('title') ?>
+Login
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
 <!-- Preloader -->
 <div class="preloader">

@@ -5,6 +5,8 @@ namespace App\Controllers\Admin;
 use CodeIgniter\RESTful\ResourceController;
 
 use App\Models\SharingPracticeModel;
+use App\Models\StudyModuleModel;
+use App\Models\StudyReferenceModel;
 
 class SharingPracticeController extends ResourceController
 {
@@ -82,6 +84,24 @@ class SharingPracticeController extends ResourceController
         }
 
         $sharingPractice = SharingPracticeModel::find($id);
+
+        if ($this->request->getPost('status') == "APPROVE") {
+            if ($sharingPractice->category_reference_id) {
+                StudyReferenceModel::create([
+                    'title' => $sharingPractice->title,
+                    'url_video' => $sharingPractice->url,
+                    'description' => $sharingPractice->description,
+                    'category_reference_id' => $sharingPractice->category_reference_id
+                ]);
+            } else {
+                StudyModuleModel::create([
+                    'title' => $sharingPractice->title,
+                    'url_module' => $sharingPractice->url,
+                    'description' => $sharingPractice->description,
+                    'category_module_id' => $sharingPractice->category_module_id
+                ]);
+            }
+        }
 
         $result = $sharingPractice->update([
             'status' => $this->request->getPost('status'),

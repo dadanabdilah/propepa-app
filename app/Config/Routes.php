@@ -98,6 +98,9 @@ $routes->group("admin", ["filter" => ["visits", "loginFilter", "authFilter", "us
     $routes->resource("sharing-practices", ['controller' => 'SharingPracticeController', 'except' => 'show']);
 
     $routes->resource("profile", ['controller' => 'ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
+
+    $routes->put('settings', 'SettingController::update');
+    $routes->resource("settings", ['controller' => 'SettingController', 'except' => 'show', 'update']);
 });
 
 $routes->group("teacher", ["filter" => "visits", "namespace" => "App\Controllers\Teacher"], function ($routes) {
