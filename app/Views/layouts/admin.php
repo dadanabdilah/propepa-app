@@ -116,6 +116,15 @@
                         </li>
 
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('admin/settings') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-settings"></i>
+                                </span>
+                                <span class="hide-menu">Pengaturan</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="<?= site_url('admin/logout') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-door-exit"></i>
