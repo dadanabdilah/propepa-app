@@ -39,12 +39,12 @@
                         <p><?= setting()->get('App.siteIntroText') ?></p>
 
                         <div class="btn-auth">
-                            <a href="<?= site_url('login') ?>" class="btn btn-login me-2">Masuk</a>
+                            <a href="<?= site_url('login') ?>" class="btn btn-login me-2 mb-3 mb-sm-3 mb-md-3">Masuk</a>
                             <a href="<?= site_url('register') ?>" class="btn btn-register">Daftar</a>
                         </div>
                     </div>
                     <div class="col-12 col-md-7">
-                        <img class="d-none d-md-block" src="<?= base_url() ?>assets/images/main/header-img.png" alt="">
+                        <img class="d-none d-lg-block" src="<?= base_url() ?>assets/images/main/header-img.png" alt="">
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                         <p><?= setting()->get('App.siteAbout') ?></p>
                     </div>
                     <div class="col-12 col-md-6">
-                        <img src="<?= base_url() ?>assets/images/main/what-is.png" alt="">
+                        <img class="img-fluid" src="<?= base_url() ?>assets/images/main/what-is.png" alt="">
                     </div>
                 </div>
             </div>
@@ -125,12 +125,12 @@
     <section class="foot">
         <div class="container">
             <div class="row col-12 col-md-12">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-12 col-lg-6">
                     <img src="<?= base_url() ?>assets/images/main/logo-light.png" alt="">
                     <p class="address mt-3">Jl. Terusan Jendral Sudirman, Cimahi 40526, Provinsi Jawa Barat, 40521</p>
 
-                    <div class="row col-12 col-md-12">
-                        <div class="col-12 col-md-6 mt-sm-3">
+                    <div class="row col-12 col-md-12 col-lg-12">
+                        <div class="col-12 col-md-12 col-lg-6 mt-sm-3">
                             <h1 class="title">Support</h1>
                             <ul>
                                 <li><a href="https://kemdikbud.go.id">Kemendikbudristek</a></li>
@@ -140,7 +140,7 @@
                             </ul>
                         </div>
 
-                        <div class="col-12 col-md-6 mt-sm-3">
+                        <div class="col-12 col-md-12 col-lg-6 mt-sm-3">
                             <h1 class="title">Kontak</h1>
                             <ul>
                                 <li><a href="mailto:<?= setting()->get('App.siteMail') ?>"><?= setting()->get('App.siteMail') ?></a></li>
@@ -151,7 +151,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 mt-sm-3">
+                <div class="col-12 col-md-12 col-lg-6 mt-sm-3">
                     <h1 class="title">Lokasi</h1>
 
                     <div class="ratio ratio-16x9 mt-3 mb-5">
