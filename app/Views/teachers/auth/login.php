@@ -20,7 +20,7 @@
                             <a href="#" class="text-nowrap logo-img text-center d-block mb-5 w-100">
                                 <h2><b>PROPEPA</b></h2>
                             </a>
-                            <form action="<?= site_url('/') ?>" method="POST">
+                            <form action="<?= site_url('/login') ?>" method="POST">
                                 <?= csrf_field() ?>
 
                                 <?php if (session('error') !== null) : ?>
