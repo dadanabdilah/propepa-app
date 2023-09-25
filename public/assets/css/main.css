@@ -220,10 +220,23 @@ footer h1 {
     line-height: normal;
 }
 
-@media only screen and (max-width: 780px){
+@media only screen and (min-width: 768px){
     .heading {
         background-size: cover;
         width: 100%;
-        height: 100vh;
     }
 }
+
+@media only screen and (min-width: 600px) {
+    .heading {
+        background-size: cover;
+        width: 100%;
+    }
+} 
+
+@media only screen and (max-width: 600px) {
+    .heading {
+        background-size: cover;
+        width: 100%;
+    }
+} 
