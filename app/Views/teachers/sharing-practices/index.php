@@ -97,7 +97,7 @@ Praktik Berbagi
                                                         <p>
                                                             <?php if ($sharingPractice->status == "WAIT_FOR_REVIEW") : ?>
                                                                 <span class="badge bg-primary">Menunggu Review</span>
-                                                            <?php elseif ($sharingPractice->status == "ACCEPT") : ?>
+                                                            <?php elseif ($sharingPractice->status == "APPROVE") : ?>
                                                                 <span class="badge bg-success">Diterima</span>
                                                             <?php elseif ($sharingPractice->status == "DECLINE") : ?>
                                                                 <span class="badge bg-danger">Ditolak</span>

@@ -63,13 +63,22 @@ Data Kategori Referensi
                                         <?php endif ?>
                                         <td><?= $sharingPractice->description ?></td>
                                         <td><?= $sharingPractice->UserIdentity->name ?></td>
-                                        <td><?= $sharingPractice->status ?></td>
+                                        <td> <?php if ($sharingPractice->status == "WAIT_FOR_REVIEW") : ?>
+                                                <span class="badge bg-primary">Menunggu Review</span>
+                                            <?php elseif ($sharingPractice->status == "APPROVE") : ?>
+                                                <span class="badge bg-success">Diterima</span>
+                                            <?php elseif ($sharingPractice->status == "DECLINE") : ?>
+                                                <span class="badge bg-danger">Ditolak</span>
+                                            <?php endif ?>
+                                        </td>
                                         <td width="20%">
-                                            <div class="action-btn">
-                                                <a href="<?= site_url('admin/sharing-practices/' . $sharingPractice->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
-                                                    <i class="ti ti-pencil fs-5"></i>
-                                                </a>
-                                            </div>
+                                            <?php if ($sharingPractice->status == "WAIT_FOR_REVIEW") : ?>
+                                                <div class="action-btn">
+                                                    <a href="<?= site_url('admin/sharing-practices/' . $sharingPractice->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
+                                                        <i class="ti ti-pencil fs-5"></i>
+                                                    </a>
+                                                </div>
+                                            <?php endif ?>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

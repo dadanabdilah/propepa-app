@@ -135,7 +135,7 @@ Dashboard
                                             <td class="ps-0">
                                                 <?php if ($studyReference->status == "WAIT_FOR_REVIEW") : ?>
                                                     <span class="badge bg-primary">Menunggu Review</span>
-                                                <?php elseif ($studyReference->status == "ACCEPT") : ?>
+                                                <?php elseif ($studyReference->status == "APPROVE") : ?>
                                                     <span class="badge bg-success">Diterima</span>
                                                 <?php elseif ($studyReference->status == "DECLINE") : ?>
                                                     <span class="badge bg-danger">Ditolak</span>
@@ -166,7 +166,7 @@ Dashboard
                                             <td class="ps-0">
                                                 <?php if ($studyModule->status == "WAIT_FOR_REVIEW") : ?>
                                                     <span class="badge bg-primary">Menunggu Review</span>
-                                                <?php elseif ($studyModule->status == "ACCEPT") : ?>
+                                                <?php elseif ($studyModule->status == "APPROVE") : ?>
                                                     <span class="badge bg-success">Diterima</span>
                                                 <?php elseif ($studyModule->status == "DECLINE") : ?>
                                                     <span class="badge bg-danger">Ditolak</span>
