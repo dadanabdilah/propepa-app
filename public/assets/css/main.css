@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&family=Changa+One&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    height: 123px;
+    background: #920A20;
+    box-shadow: 0px 3.38082px 5.6347px 0px rgba(0, 0, 0, 0.10), 0px 27px 45px 0px rgba(0, 0, 0, 0.21);
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    font-weight: 600;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    padding: 0 20px 0 20px;
+}
+
+.navbar .navbar-nav {
+    background: #920A20;
+}
+
+.navbar .navbar-toggler-icon {
+    color: #FFF;
+}
+
+.heading {
+    background-image: url('../images/main/bg-header.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: auto;
+}
+
+.heading .heading-text {
+    margin-top: 200px;
+    color: #FFF
+}
+
+.heading .heading-text h1 {
+    color: #FFF;
+    font-family: 'Birthstone', cursive;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+}
+
+.heading .heading-text h2 {
+    color: #FFF;
+    font-family: 'Changa One', cursive;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+}
+
+.heading .heading-text .btn-auth {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.heading .heading-text .btn-login {
+    width: 194px;
+    height: 54px;
+    border-radius: 30px;
+    background: #FFF;
+    color: #7E0317;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.heading .heading-text .btn-register {
+    width: 194px;
+    height: 54px;
+    border-radius: 30px;
+    background: #FFD200;
+    color: #7E0317;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.heading .heading-text p {
+    color: #FFF;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+.heading img {
+    min-height: auto;
+}
+
+.what-is {
+    margin-top: 50px;
+}
+
+.what-is h1 {
+    color: #000;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.what-is p {
+    color: #181818;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27px;
+}
+
+.benefit {
+    margin-top: 50px;
+}
+
+.benefit h1 {
+    color: #000;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.benefit .subtitle {
+    color: #181818;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27px;
+    margin-bottom: 50px;
+}
+
+.about-us {
+    background: #B31F1F;
+}
+
+.about-us h1 {
+    color: #FFF;
+    font-size: 36px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+
+.about-us iframe {
+    border-radius: 30px;
+}
+
+.foot {
+    margin-top: 50px;
+}
+
+.foot .address {
+    color: #000;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.foot .title {
+    color: #B31F1F;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.foot ul {
+    margin: 0;
+    padding: 0;
+}
+
+.foot ul li {
+    list-style: none;
+    color: #000;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.foot ul li a {
+    text-decoration: none ;
+    color: #000;
+    text-decoration-line: none;
+}
+
+.foot ul li a:hover {
+    text-decoration-line: underline;
+}
+
+footer {
+    background: #B31F1F;
+    height: 85px;
+    align-items: center;
+}
+
+footer h1 {
+    color: #FFF;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+@media only screen and (max-width: 780px){
+    .heading {
+        background-size: cover;
+        width: 100%;
+        height: 100vh;
+    }
+}
