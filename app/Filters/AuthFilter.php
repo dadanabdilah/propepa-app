@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class LoginFilter implements FilterInterface
+class AuthFilter implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -25,14 +25,10 @@ class LoginFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (auth()->loggedIn()) {
-            if (!auth()->user()->active) {
-                auth()->logout();
+        helper('auth');
 
-                session()->setFlashdata('error', 'Akun anda nonaktif, silahkan hubungi admin');
-
-                return redirect()->back();
-            }
+        if (!auth()->loggedIn()) {
+            return redirect()->route('/');
         }
     }
 

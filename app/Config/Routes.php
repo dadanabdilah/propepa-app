@@ -30,29 +30,40 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
+$routes->get('/', 'HomeController::index');
+
 // Except admin auth
-$routes->get('/', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);
-$routes->post('/', '\CodeIgniter\Shield\Controllers\LoginController::loginAction');
+$routes->get('/login', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);
+$routes->post('/login', '\CodeIgniter\Shield\Controllers\LoginController::loginAction');
 
 $routes->get('/register', 'Teacher\RegisterController::index', ['as' => 'register']);
 $routes->post('/register', 'Teacher\RegisterController::create');
 
-$routes->get('/dashboard', 'Teacher\DashboardController::index');
-
 \Config\Services::auth()->routes($routes);
 
-$routes->resource("study-references", ['controller' => 'Teacher\StudyReferenceController']);
-$routes->resource("study-modules", ['controller' => 'Teacher\StudyModuleController']);
-$routes->resource("opinions", ['controller' => 'Teacher\OpinionController']);
-$routes->resource("study-communities", ['controller' => 'Teacher\StudyCommunityController']);
-$routes->get('/sharing-practices/new-module', 'Teacher\SharingPracticeController::newModule');
-$routes->get('/sharing-practices/new-video', 'Teacher\SharingPracticeController::newVideo');
-$routes->post('/sharing-practices/new-module', 'Teacher\SharingPracticeController::createModule');
-$routes->post('/sharing-practices/new-video', 'Teacher\SharingPracticeController::createVideo');
-$routes->resource("sharing-practices", ['controller' => 'Teacher\SharingPracticeController']);
-$routes->resource("profile", ['controller' => 'Teacher\ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
+$routes->group("/", ["filter" => ["visits"], "namespace" => "App\Controllers\Teacher"], function ($routes) {
+    $routes->get('/login', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);
+    $routes->post('/login', '\CodeIgniter\Shield\Controllers\LoginController::loginAction');
 
-$routes->group("admin", ["filter" => ["visits", "loginFilter"], "namespace" => "App\Controllers\Admin"], function ($routes) {
+    $routes->get('/register', 'Teacher\RegisterController::index', ['as' => 'register']);
+    $routes->post('/register', 'Teacher\RegisterController::create');
+});
+
+$routes->group("/", ["filter" => ["visits", "loginFilter", "authFilter", "userFilter:teacher"], "namespace" => "App\Controllers\Teacher"], function ($routes) {
+    $routes->get('/dashboard', 'DashboardController::index');
+    $routes->resource("study-references", ['controller' => 'StudyReferenceController']);
+    $routes->resource("study-modules", ['controller' => 'StudyModuleController']);
+    $routes->resource("opinions", ['controller' => 'OpinionController']);
+    $routes->resource("study-communities", ['controller' => 'StudyCommunityController']);
+    $routes->get('/sharing-practices/new-module', 'SharingPracticeController::newModule');
+    $routes->get('/sharing-practices/new-video', 'SharingPracticeController::newVideo');
+    $routes->post('/sharing-practices/new-module', 'SharingPracticeController::createModule');
+    $routes->post('/sharing-practices/new-video', 'SharingPracticeController::createVideo');
+    $routes->resource("sharing-practices", ['controller' => 'SharingPracticeController']);
+    $routes->resource("profile", ['controller' => 'ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
+});
+
+$routes->group("admin", ["filter" => ["visits"], "namespace" => "App\Controllers\Admin"], function ($routes) {
     $routes->get('/', function () {
         return redirect('admin/login');
     });
@@ -61,7 +72,9 @@ $routes->group("admin", ["filter" => ["visits", "loginFilter"], "namespace" => "
     $routes->get('login', 'LoginController::loginView');
     $routes->post('login', 'LoginController::loginAction');
     $routes->get('logout', 'LoginController::logoutAction');
+});
 
+$routes->group("admin", ["filter" => ["visits", "loginFilter", "authFilter", "userFilter:admin"], "namespace" => "App\Controllers\Admin"], function ($routes) {
     // Dashboard
     $routes->get('dashboard', 'DashboardController::index');
 

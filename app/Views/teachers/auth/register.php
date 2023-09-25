@@ -11,15 +11,18 @@
 </div>
 <!--  Body Wrapper -->
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
-    <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center">
         <div class="d-flex align-items-center justify-content-center w-100">
             <div class="row justify-content-center w-100">
                 <div class="col-md-12 col-lg-12 col-xxl-6">
+                    <div class="d-flex justify-content-center mb-5 mt-5">
+                        <img src="<?= base_url('assets/images/logos/logo.png') ?>" alt="">
+                        <a href="#" class="text-nowrap logo-img mt-2">
+                            <h2><b>| BUAT AKUN</b></h2>
+                        </a>
+                    </div>
                     <div class="card mb-0">
                         <div class="card-body">
-                            <a href="#" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                                <h2><b>PROPEPA</b></h2>
-                            </a>
                             <form action="<?= site_url('/register') ?>" method="POST">
                                 <?= csrf_field() ?>
 
@@ -59,8 +62,8 @@
                                     <label for="password_confirm" class="form-label">Konfirmasi Password</label>
                                     <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Password Konfirmasi..." value="" autocomplete="off" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100 py-8 mb-2 rounded-2">Daftar</button>
-                                <a href="<?= site_url('/') ?>" class="btn btn-outline-primary w-100 mb-4 rounded-2">Masuk</a>
+                                <button type="submit" class="btn btn-danger w-100 py-8 mb-2 rounded-2">Daftar</button>
+                                <a href="<?= site_url('/login') ?>" class="btn btn-outline-danger w-100 mb-4 rounded-2">Masuk</a>
                             </form>
                         </div>
                     </div>
