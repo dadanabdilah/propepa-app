@@ -19,7 +19,7 @@ Dashboard
                 <div class="card bg-danger text-light">
                     <div class="card-body">
                         <p class="mb-1 fs-3">Total User</p>
-                        <h4 class="fw-semibold fs-7 text-light">78,298</h4>
+                        <h4 class="fw-semibold fs-7 text-light"><?= $countUsers ?></h4>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@ Dashboard
                 <div class="card bg-primary text-light">
                     <div class="card-body">
                         <p class="mb-1 fs-3">Total Video</p>
-                        <h4 class="fw-semibold fs-7 text-light">78,298</h4>
+                        <h4 class="fw-semibold fs-7 text-light"><?= count($studyReferences) ?></h4>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@ Dashboard
                 <div class="card bg-danger text-light">
                     <div class="card-body">
                         <p class="mb-1 fs-3">Total Modul</p>
-                        <h4 class="fw-semibold fs-7 text-light">78,298</h4>
+                        <h4 class="fw-semibold fs-7 text-light"><?= count($studyModules) ?></h4>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@ Dashboard
                 <div class="card bg-primary text-light">
                     <div class="card-body">
                         <p class="mb-1 fs-3">Total Kunjungan</p>
-                        <h4 class="fw-semibold fs-7 text-light">78,298</h4>
+                        <h4 class="fw-semibold fs-7 text-light"><?= $countVisitor ?></h4>
                     </div>
                 </div>
             </div>
@@ -124,17 +124,29 @@ Dashboard
                         <div class="table-responsive">
                             <table class="table align-middle mb-0 text-nowrap">
                                 <tbody>
-                                    <tr>
-                                        <td class="ps-0">
-                                            <span>Mamat Geboy</span>
-                                        </td>
-                                        <td class="ps-0">
-                                            <span>React Js - Online Classes</span>
-                                        </td>
-                                        <td class="ps-0">
-                                            <h6 class="mb-0">$50.00</h6>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($studyReferences as $studyReference) : ?>
+                                        <tr>
+                                            <td class="ps-0">
+                                                <span><?= $studyReference->UserIdentity->name ?></span>
+                                            </td>
+                                            <td class="ps-0">
+                                                <span><?= $studyReference->title ?></span>
+                                            </td>
+                                            <td class="ps-0">
+                                                <?php if ($studyReference->status == "WAIT_FOR_REVIEW") : ?>
+                                                    <span class="badge bg-primary">Menunggu Review</span>
+                                                <?php elseif ($studyReference->status == "ACCEPT") : ?>
+                                                    <span class="badge bg-success">Diterima</span>
+                                                <?php elseif ($studyReference->status == "DECLINE") : ?>
+                                                    <span class="badge bg-danger">Ditolak</span>
+                                                <?php endif ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+
+                                    <?php if (count($studyReferences) == 0) : ?>
+                                        <h4 class="text-center">Tidak ada data</h4>
+                                    <?php endif ?>
                                 </tbody>
                             </table>
                         </div>
@@ -143,17 +155,29 @@ Dashboard
                         <div class="table-responsive">
                             <table class="table table-hover align-middle mb-0 text-nowrap">
                                 <tbody>
-                                    <tr>
-                                        <td class="ps-0">
-                                            <span>Mamat Geboy</span>
-                                        </td>
-                                        <td class="ps-0">
-                                            <span>Frontend Dev - Online Classes</span>
-                                        </td>
-                                        <td class="ps-0">
-                                            <h6 class="mb-0">$49.00</h6>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($studyModules as $studyModule) : ?>
+                                        <tr>
+                                            <td class="ps-0">
+                                                <span><?= $studyModule->UserIdentity->name ?></span>
+                                            </td>
+                                            <td class="ps-0">
+                                                <span><?= $studyModule->title ?></span>
+                                            </td>
+                                            <td class="ps-0">
+                                                <?php if ($studyModule->status == "WAIT_FOR_REVIEW") : ?>
+                                                    <span class="badge bg-primary">Menunggu Review</span>
+                                                <?php elseif ($studyModule->status == "ACCEPT") : ?>
+                                                    <span class="badge bg-success">Diterima</span>
+                                                <?php elseif ($studyModule->status == "DECLINE") : ?>
+                                                    <span class="badge bg-danger">Ditolak</span>
+                                                <?php endif ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+
+                                    <?php if (count($studyModules) == 0) : ?>
+                                        <h4 class="text-center">Tidak ada data</h4>
+                                    <?php endif ?>
                                 </tbody>
                             </table>
                         </div>
@@ -170,8 +194,8 @@ Dashboard
     $(document).ready(() => {
         var options = {
             series: [{
-                name: "Desktops",
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                name: "Akses Video",
+                data: <?= json_encode($countAccessVideo) ?>
             }],
             chart: {
                 height: 350,
@@ -185,10 +209,6 @@ Dashboard
             },
             stroke: {
                 curve: 'straight'
-            },
-            title: {
-                text: 'Product Trends by Month',
-                align: 'left'
             },
             grid: {
                 row: {
@@ -197,7 +217,7 @@ Dashboard
                 },
             },
             xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
             }
         };
 
@@ -206,8 +226,8 @@ Dashboard
 
         var options = {
             series: [{
-                name: "Desktops",
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                name: "Akses Modul",
+                data: <?= json_encode($countAccessModule) ?>
             }],
             chart: {
                 height: 350,
@@ -222,18 +242,14 @@ Dashboard
             stroke: {
                 curve: 'straight'
             },
-            title: {
-                text: 'Product Trends by Month',
-                align: 'left'
-            },
             grid: {
                 row: {
-                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    colors: ['#f3f3f3', 'transparent'],
                     opacity: 0.5
                 },
             },
             xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
             }
         };
 
@@ -242,16 +258,13 @@ Dashboard
 
 
         var options = {
-            series: [{
-                name: 'Net Profit',
-                data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-            }, {
-                name: 'Revenue',
-                data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-            }, {
-                name: 'Free Cash Flow',
-                data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-            }],
+            series: [
+                <?php foreach ($listPlatforms as $listPlatform) : ?> {
+                        name: "<?= $listPlatform ?>",
+                        data: <?= json_encode($countPlatform) ?>
+                    }
+                <?php endforeach ?>
+            ],
             chart: {
                 type: 'bar',
                 height: 350
@@ -272,11 +285,11 @@ Dashboard
                 colors: ['transparent']
             },
             xaxis: {
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                categories: <?= json_encode($listPlatforms) ?>,
             },
             yaxis: {
                 title: {
-                    text: '$ (thousands)'
+                    text: 'Perangkat'
                 }
             },
             fill: {
@@ -285,7 +298,7 @@ Dashboard
             tooltip: {
                 y: {
                     formatter: function(val) {
-                        return "$ " + val + " thousands"
+                        return val + " Perangkat"
                     }
                 }
             }
