@@ -47,7 +47,7 @@
                         <p><?= setting()->get('App.siteIntroText') ?></p>
 
                         <div class="btn-auth">
-                            <a href="<?= site_url('login') ?>" class="btn btn-login me-2 mb-3 mb-sm-3 mb-md-3">Masuk</a>
+                            <a href="<?= site_url('login') ?>" class="btn btn-login me-2 mb-3 mb-sm-3 mb-md-0">Masuk</a>
                             <a href="<?= site_url('register') ?>" class="btn btn-register">Daftar</a>
                         </div>
                     </div>
