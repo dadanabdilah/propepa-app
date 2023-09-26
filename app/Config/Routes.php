@@ -108,6 +108,29 @@ $routes->group("teacher", ["filter" => "visits", "namespace" => "App\Controllers
     $routes->get('dashboard', 'DashboardController::index');
 });
 
+// API
+$routes->group("api/v1", ["namespace" => "App\Controllers\API"], function ($routes) {
+    $routes->post('login', 'LoginController::loginAction');
+    $routes->get('logout', 'LoginController::logoutAction');
+
+    $routes->post('register', 'RegisterController::create');
+
+    $routes->get('dashboard', 'DashboardController::index');
+
+    $routes->resource('category-references', ['controller' => 'CategoryReferenceController', 'only' => 'index']);
+    $routes->resource('category-modules', ['controller' => 'CategoryModuleController', 'only' => 'index']);
+    $routes->get('sharing-practices/new-module', 'SharingPracticeController::newModule');
+    $routes->get('sharing-practices/new-video', 'SharingPracticeController::newVideo');
+    $routes->post('sharing-practices/new-module', 'SharingPracticeController::createModule');
+    $routes->post('sharing-practices/new-video', 'SharingPracticeController::createVideo');
+    $routes->resource('sharing-practices', ['controller' => 'SharingPracticeController']);
+    $routes->resource('study-references', ['controller' => 'StudyReferenceController', 'only' => ['index', 'show', 'new']]);
+    $routes->resource('study-modules', ['controller' => 'StudyModuleController', 'only' => ['index', 'show']]);
+    $routes->resource('study-communities', ['controller' => 'StudyCommunityController', 'only' => 'index']);
+    $routes->resource('opinions', ['controller' => 'OpinionController', 'only' => ['index', 'create']]);
+});
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
