@@ -262,7 +262,7 @@ Dashboard
                 <?php foreach ($listPlatforms as $listPlatform) : ?> {
                         name: "<?= $listPlatform ?>",
                         data: <?= json_encode($countPlatform) ?>
-                    }
+                    },
                 <?php endforeach ?>
             ],
             chart: {

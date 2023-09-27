@@ -65,27 +65,37 @@ Data Pengguna
                                         <td><?= $user->active == '0' ? 'Nonaktif' : 'Aktif' ?></td>
                                         <td width="20%">
                                             <div class="action-btn">
-                                                <?php if ($user->active == '0') : ?>
-                                                    <form action="<?= site_url('admin/users/' . $user->id . '/status') ?>" method="POST">
-                                                        <?= csrf_field() ?>
-                                                        <button type="submit" class="btn btn-success" data-bs-toggle="tooltip" title="Aktifkan Akun">
-                                                            <i class="ti ti-check"></i>
-                                                        </button>
-                                                    </form>
-                                                <?php else : ?>
-                                                    <form action="<?= site_url('admin/users/' . $user->id . '/status') ?>" method="POST">
-                                                        <?= csrf_field() ?>
-                                                        <button type="submit" class="btn btn-info" data-bs-toggle="tooltip" title="Nonaktifkan Akun">
-                                                            <i class="ti ti-forbid-2"></i>
-                                                        </button>
-                                                    </form>
+                                                <?php if ($user->group != 'admin') : ?>
+                                                    <?php if ($user->active == '0') : ?>
+                                                        <form action="<?= site_url('admin/users/' . $user->id . '/status') ?>" method="POST">
+                                                            <?= csrf_field() ?>
+                                                            <button type="submit" class="btn btn-success" data-bs-toggle="tooltip" title="Aktifkan Akun">
+                                                                <i class="ti ti-check"></i>
+                                                            </button>
+                                                        </form>
+                                                    <?php else : ?>
+                                                        <form action="<?= site_url('admin/users/' . $user->id . '/status') ?>" method="POST">
+                                                            <?= csrf_field() ?>
+                                                            <button type="submit" class="btn btn-info" data-bs-toggle="tooltip" title="Nonaktifkan Akun">
+                                                                <i class="ti ti-forbid-2"></i>
+                                                            </button>
+                                                        </form>
+                                                    <?php endif ?>
                                                 <?php endif ?>
-                                                <a href="<?= site_url('admin/users/' . $user->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
-                                                    <i class="ti ti-pencil fs-5"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-danger delete-confirm" data-action="<?= site_url('admin/users/' . $user->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
-                                                    <i class="ti ti-trash fs-5"></i>
-                                                </a>
+                                                <?php if ($user->id != auth()->id()) : ?>
+                                                    <a href="<?= site_url('admin/users/' . $user->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
+                                                        <i class="ti ti-pencil fs-5"></i>
+                                                    </a>
+                                                <?php else : ?>
+                                                    <a href="<?= site_url('admin/profile') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
+                                                        <i class="ti ti-pencil fs-5"></i>
+                                                    </a>
+                                                <?php endif ?>
+                                                <?php if ($user->group != 'admin') : ?>
+                                                    <a href="javascript:void(0)" class="btn btn-danger delete-confirm" data-action="<?= site_url('admin/users/' . $user->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                                                        <i class="ti ti-trash fs-5"></i>
+                                                    </a>
+                                                <?php endif ?>
                                             </div>
                                         </td>
                                     </tr>
