@@ -87,7 +87,7 @@ class GoogleOAuth extends AbstractOAuth
         if ($nameOfProcess === 'syncingUserInfo') {
             return [
                 $this->config->usersColumnsName['first_name'] => $userInfo->name,
-                $this->config->usersColumnsName['last_name']  => $userInfo->family_name ?? '-',
+                $this->config->usersColumnsName['last_name']  => $userInfo->family_name ?? '',
                 $this->config->usersColumnsName['avatar']     => $userInfo->picture,
             ];
         }
@@ -100,7 +100,7 @@ class GoogleOAuth extends AbstractOAuth
                 'password'                                    => random_string('crypto', 32),
                 'active'                                      => $userInfo->email_verified,
                 $this->config->usersColumnsName['first_name'] => $userInfo->given_name,
-                $this->config->usersColumnsName['last_name']  => $userInfo->family_name ?? '-',
+                $this->config->usersColumnsName['last_name']  => $userInfo->family_name ?? '',
                 $this->config->usersColumnsName['avatar']     => $userInfo->picture,
             ];
         }
