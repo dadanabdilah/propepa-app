@@ -19,7 +19,7 @@ Register
         <div class="d-flex align-items-center justify-content-center w-100">
             <div class="row justify-content-center w-100">
                 <div class="col-md-12 col-lg-12 col-xxl-6">
-                    <div class="d-flex justify-content-center mb-5 mt-5">
+                    <div class="d-flex justify-content-center align-items-center mb-5 mt-5">
                         <img src="<?= base_url('assets/images/logos/logo.png') ?>" alt="">
                         <a href="#" class="text-nowrap logo-img mt-2">
                             <h2><b>| BUAT AKUN</b></h2>

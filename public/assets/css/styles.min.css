@@ -25330,7 +25330,7 @@ progress {
 .form-control:focus {
     color: #5a6a85;
     background-color: transparent;
-    border-color: #aec3ff;
+    border-color: var(--bs-danger);
     outline: 0;
     box-shadow:unset, 0 0 0 .25rem rgba(93, 135, 255, .25)
 }
@@ -54633,6 +54633,10 @@ ul {
 
 .bg-light-dark {
     background-color:rgba(0, 0, 0, .3) !important
+}
+
+.bg-hover-white:hover {
+    color:var(--bs-white) !important
 }
 
 .bg-hover-primary:hover {

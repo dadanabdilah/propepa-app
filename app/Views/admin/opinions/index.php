@@ -44,6 +44,9 @@ Berbagi Opini
                                                     <div>
                                                         <h6 class="fs-2 text-muted"><?= $opinion->User->name ?></h6>
                                                         <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> <?= $opinion->opinion ?></div>
+                                                        <a href="javascript:void(0)" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                                                            <i class="ti ti-trash fs-5"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             <?php endif ?>
@@ -52,6 +55,9 @@ Berbagi Opini
                                                 <div class="hstack gap-3 align-items-start mb-7 justify-content-end">
                                                     <div class="text-end">
                                                         <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> <?= $opinion->opinion ?></div>
+                                                        <a href="javascript:void(0)" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                                                            <i class="ti ti-trash fs-5"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             <?php endif ?>
@@ -59,14 +65,19 @@ Berbagi Opini
                                     </div>
                                 </div>
                             </div>
-                            <div class="py-6 border-top chat-send-message-footer">
-                                <div class="w-100">
-                                    <form action="<?= site_url('admin/opinions') ?>" method="POST" id="opinion">
-                                        <?= csrf_field() ?>
+                            <div class="px-9 py-6 border-top chat-send-message-footer">
+                                <form action="<?= site_url('admin/opinions') ?>" method="POST" id="opinion">
+                                    <?= csrf_field() ?>
 
-                                        <textarea name="opinion" class="form-control text-muted border-0 p-0 ms-2" rows="5" placeholder="Ketik Pesan" id="text-opinion"></textarea>
-                                    </form>
-                                </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2 w-85">
+                                            <textarea name="opinion" class="form-control text-muted border-0 p-0 ms-2" rows="5" placeholder="Ketik Pesan" id="text-opinion"></textarea>
+                                        </div>
+                                        <ul class="list-unstyledn mb-0 d-flex align-items-center">
+                                            <li><button type="button" class="btn text-dark px-2 fs-7 bg-hover-white nav-icon-hover position-relative z-index-5 " id="btn-submit"><i class="ti ti-send"></i></button></li>
+                                        </ul>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -83,6 +94,20 @@ Berbagi Opini
         $('.chat-box .active-chat').slice(-1)[0].scrollIntoView({
             block: "end"
         });
+
+        $('#btn-submit').on('click', (e) => {
+            e.preventDefault();
+
+            let $form = $(this),
+                opinionText = $('#text-opinion').val(),
+                url = $form.attr("action");
+
+            let posting = $.post(url, {
+                opinion: opinionText
+            });
+
+            $('textarea').val('')
+        })
 
         $("textarea").keydown(function(e) {
             if (e.keyCode == 13 && !e.shiftKey) {
@@ -142,12 +167,18 @@ Berbagi Opini
                     <div>
                         <h6 class="fs-2 text-muted">${data.opinions.user.name}</h6>
                         <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> ${data.opinions.opinion}</div>
+                        <a href="javascript:void(0)" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                            <i class="ti ti-trash fs-5"></i>
+                        </a>
                     </div>
                 </div>` : ''}
 
             ${data.opinions.user_id == userId ? `<div class="hstack gap-3 align-items-start mb-7 justify-content-end">
                     <div class="text-end">
                         <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> ${data.opinions.opinion}</div>
+                        <a href="javascript:void(0)" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                            <i class="ti ti-trash fs-5"></i>
+                        </a>
                     </div>
                 </div>` : '' }
            `
