@@ -20,7 +20,7 @@ Edit Profil
                     <div class="alert alert-danger" role="alert"><?= session('error') ?></div>
                 <?php endif ?>
 
-                <form action="<?= site_url('admin/profile/' . auth()->id()) ?>" method="POST">
+                <form action="<?= site_url('admin/profile/' . auth()->id()) ?>" method="POST" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <input type="hidden" name="_method" value="PUT" />
 
@@ -52,6 +52,14 @@ Edit Profil
                         <label class="form-label fw-semibold col-sm-3 col-form-label">Alamat</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="address" placeholder="Alamat" value="<?= $user->address ?? old('address') ?>" required>
+                        </div>
+                    </div>
+                    <div class="mb-4 row align-items-center">
+                        <label class="form-label fw-semibold col-sm-3 col-form-label">Foto</label>
+                        <div class="col-sm-9">
+                            <img src="<?= base_url('assets/images/users/' . $user->avatar) ?>" alt="Foto Profil" style="width:200px">
+                            <input type="file" class="form-control" name="avatar">
+                            <p class="text-muted">Ukuran file  maksimal 1MB <br> Kosongkan bila tidak ingin diubah</p>
                         </div>
                     </div>
                     <div class="row">

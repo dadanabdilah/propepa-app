@@ -28,6 +28,8 @@
 
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="<?= base_url('assets/css/styles.min.css') ?>" />
+
+    <?= $this->renderSection('css') ?>
 </head>
 
 <body>
@@ -65,6 +67,14 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('admin/articles') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-article"></i>
+                                </span>
+                                <span class="hide-menu">Artikel</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="<?= site_url('admin/study-references') ?>" aria-expanded="false">
@@ -186,7 +196,11 @@
                                     <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <div class="d-flex align-items-center">
                                             <div class="user-profile-img">
-                                                <img src="https://ui-avatars.com/api/?name=<?= auth()->user()->identities[0]->name ?>" class="rounded-circle" width="35" height="35" alt="" />
+                                                <?php if (auth()->user()->avatar) : ?>
+                                                    <img src="<?= base_url('assets/images/users/' . auth()->user()->avatar) ?>" class="rounded-circle" width="35" height="35" alt="" />
+                                                <?php else : ?>
+                                                    <img src="https://ui-avatars.com/api/?name=<?= auth()->user()->name ?>" class="rounded-circle" width="35" height="35" alt="" />
+                                                <?php endif ?>
                                             </div>
                                         </div>
                                     </a>
@@ -196,7 +210,11 @@
                                                 <h5 class="mb-0 fs-5 fw-semibold">Profil</h5>
                                             </div>
                                             <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                                <img src="https://ui-avatars.com/api/?name=<?= auth()->user()->identities[0]->name ?>" class="rounded-circle" width="80" height="80" alt="" />
+                                                <?php if (auth()->user()->avatar) : ?>
+                                                    <img src="<?= base_url('assets/images/users/' . auth()->user()->avatar) ?>" class="rounded-circle" width="80" height="80" alt="" />
+                                                <?php else : ?>
+                                                    <img src="https://ui-avatars.com/api/?name=<?= auth()->user()->name ?>" class="rounded-circle" width="80" height="80" alt="" />
+                                                <?php endif ?>
                                                 <div class="ms-3">
                                                     <h5 class="mb-1 fs-3"><?= auth()->user()->identities[0]->name ?></h5>
                                                     <span class="mb-1 d-block text-dark"><?= ucfirst(auth()->user()->getGroups()[0]) ?></span>
@@ -209,6 +227,11 @@
                                                 <a href="<?= site_url('admin/profile') ?>" class="py-8 px-7 mt-8 d-flex align-items-center">
                                                     <div class="w-100 d-inline-block v-middle">
                                                         <h6 class="mb-1 bg-hover-primary fw-semibold"> Edit Profil </h6>
+                                                    </div>
+                                                </a>
+                                                <a class="py-8 px-7 mt-8 d-flex align-items-center" href="<?= site_url('admin/logout') ?>">
+                                                    <div class="w-100 d-inline-block v-middle">
+                                                        <h6 class="mb-1 bg-hover-primary fw-semibold"> Logout </h6>
                                                     </div>
                                                 </a>
                                             </div>

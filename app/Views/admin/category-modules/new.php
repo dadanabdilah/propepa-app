@@ -45,4 +45,5 @@ Tambah Data Kategori Modul
             </div>
         </div>
     </div>
-    <?= $this->endSection() ?>
+</div>
+<?= $this->endSection() ?>

@@ -62,4 +62,5 @@ Tambah Data Modul Belajar
             </div>
         </div>
     </div>
-    <?= $this->endSection() ?>
+</div>
+<?= $this->endSection() ?>

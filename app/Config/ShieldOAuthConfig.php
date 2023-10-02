@@ -72,8 +72,7 @@ class ShieldOAuthConfig extends OAuthConfig
      * @var array<string, string>
      */
     public array $usersColumnsName = [
-        'first_name' => 'first_name',
-        'last_name'  => 'last_name',
+        'name' => 'name',
         'avatar'     => 'avatar',
     ];
 

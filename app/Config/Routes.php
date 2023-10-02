@@ -31,6 +31,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 $routes->get('/', 'HomeController::index');
+$routes->get('/artikel/(:segment)', 'HomeController::articleDetail/$1');
+$routes->get('/artikel', 'HomeController::article');
 
 // Except admin auth
 $routes->get('/login', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);
@@ -99,6 +101,8 @@ $routes->group("admin", ["filter" => ["visits", "loginFilter", "authFilter", "us
 
     $routes->resource("profile", ['controller' => 'ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
 
+    $routes->resource("articles", ['controller' => 'ArticleController', 'except' => 'show']);
+
     $routes->put('settings', 'SettingController::update');
     $routes->resource("settings", ['controller' => 'SettingController', 'except' => 'show', 'update']);
 });
@@ -117,6 +121,7 @@ $routes->group("api/v1", ["namespace" => "App\Controllers\API"], function ($rout
 
     $routes->get('dashboard', 'DashboardController::index');
 
+    $routes->resource('articles', ['controller' => 'ArticleController', 'only' => 'index']);
     $routes->resource('category-references', ['controller' => 'CategoryReferenceController', 'only' => 'index']);
     $routes->resource('category-modules', ['controller' => 'CategoryModuleController', 'only' => 'index']);
     $routes->get('sharing-practices/new-module', 'SharingPracticeController::newModule');

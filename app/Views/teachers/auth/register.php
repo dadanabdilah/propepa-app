@@ -27,7 +27,7 @@ Register
                     </div>
                     <div class="card mb-0">
                         <div class="card-body">
-                            <form action="<?= site_url('/register') ?>" method="POST">
+                            <form action="<?= site_url('/register') ?>" method="POST" enctype="multipart/form-data">
                                 <?= csrf_field() ?>
 
                                 <?php if (session('error') !== null) : ?>
@@ -65,6 +65,11 @@ Register
                                 <div class="mb-4">
                                     <label for="password_confirm" class="form-label">Konfirmasi Password</label>
                                     <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Password Konfirmasi..." value="" autocomplete="off" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Foto</label>
+                                    <input type="file" class="form-control" name="avatar">
+                                    <p class="text-muted">Ukuran file  maksimal 1MB</p>
                                 </div>
                                 <button type="submit" class="btn btn-danger w-100 py-8 mb-2 rounded-2">Daftar</button>
                                 <a href="<?= site_url('/login') ?>" class="btn btn-outline-danger w-100 mb-4 rounded-2">Masuk</a>

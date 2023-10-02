@@ -28,9 +28,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ms-auto p-sm-3">
-                        <a class="nav-link active" aria-current="page" href="#">Beranda</a>
-                        <a class="nav-link" href="#about">Tentang</a>
-                        <a class="nav-link" href="#benefit">Keuntungan</a>
+                        <a class="nav-link active" aria-current="page" href="<?= site_url('/') ?>">Beranda</a>
+                        <a class="nav-link" href="<?= site_url('/') ?>#about">Tentang</a>
+                        <a class="nav-link" href="<?= site_url('/') ?>#benefit">Keuntungan</a>
+                        <a class="nav-link" href="<?= site_url('artikel') ?>">Artikel</a>
                         <a class="nav-link" href="<?= site_url('register') ?>">Daftar</a>
                         <a class="nav-link" href="<?= site_url('login') ?>">Masuk</a>
                     </div>
@@ -127,6 +128,33 @@
                 <img class="ms-auto" src="<?= base_url() ?>assets/images/main/batik-light.png" alt="">
             </div>
         </section>
+
+        <section class="articles">
+            <div class="container pb-5">
+                <div class="row col-12 text-center mb-3">
+                    <h1 class="mt-5">Artikel</h1>
+                </div>
+                <div class="row col-12 col-md-12">
+                    <?php foreach ($articles as $article) : ?>
+                        <div class="col-12 col-md-6">
+                            <div class="card">
+                                <img src="<?= base_url('assets/images/articles/' . $article->thumbnail) ?>" class="card-img-top img-fluid" alt="<?= $article->title ?>">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="<?= site_url('artikel/' . $article->slug) ?>"><?= $article->title ?></a></h5>
+                                    <p class="card-text"><?= substr($article->content, 0, 50) ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="<?= base_url('/artikel') ?>" class="btn btn-danger text-white">Lihat Semua Artikel</a>
+                </div>
+            </div>
+            <div class="d-none d-md-flex align-items-start">
+                <img src="<?= base_url() ?>assets/images/main/batik-left.png" alt="">
+            </div>
+        </section>
     </main>
 
     <section class="foot">
@@ -167,8 +195,8 @@
                 </div>
             </div>
         </div>
-        <div class="d-none d-md-flex align-items-start">
-            <img src="<?= base_url() ?>assets/images/main/batik-left.png" alt="">
+        <div class="d-none d-md-flex align-items-end">
+            <img class="ms-auto" src="<?= base_url() ?>assets/images/main/batik-right.png" alt="">
         </div>
     </section>
 

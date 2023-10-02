@@ -86,4 +86,5 @@ Edit Data Praktik Berbagi
             </div>
         </div>
     </div>
-    <?= $this->endSection() ?>
+</div>
+<?= $this->endSection() ?>
