@@ -119,6 +119,7 @@ $routes->group("api/v1", ["namespace" => "App\Controllers\API"], function ($rout
 
     $routes->get('dashboard', 'DashboardController::index');
 
+    $routes->resource('articles', ['controller' => 'ArticleController', 'only' => 'index']);
     $routes->resource('category-references', ['controller' => 'CategoryReferenceController', 'only' => 'index']);
     $routes->resource('category-modules', ['controller' => 'CategoryModuleController', 'only' => 'index']);
     $routes->get('sharing-practices/new-module', 'SharingPracticeController::newModule');
