@@ -162,6 +162,15 @@
     border-radius: 30px;
 }
 
+.articles a {
+    color: #000;
+    text-decoration: none;
+}
+
+.articles a:hover {
+    color: #4b4b4b;
+}
+
 .foot {
     margin-top: 50px;
 }

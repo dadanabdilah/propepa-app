@@ -31,6 +31,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 $routes->get('/', 'HomeController::index');
+$routes->get('/artikel/(:segment)', 'HomeController::articleDetail/$1');
+$routes->get('/artikel', 'HomeController::article');
 
 // Except admin auth
 $routes->get('/login', '\CodeIgniter\Shield\Controllers\LoginController::loginView', ['as' => 'login']);

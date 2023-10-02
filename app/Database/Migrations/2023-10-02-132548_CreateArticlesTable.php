@@ -15,6 +15,10 @@ class CreateArticlesTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'slug' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '191'
+            ],
             'thumbnail' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '191'

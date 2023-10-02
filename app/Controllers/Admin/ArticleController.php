@@ -66,6 +66,7 @@ class ArticleController extends ResourceController
                 $file->move('../public/assets/images/articles', $newName);
 
                 $result = ArticleModel::create([
+                    'slug' => url_title($this->request->getPost('title'), '-', TRUE),
                     'title' => $this->request->getPost('title'),
                     'content' => $this->request->getPost('content'),
                     'thumbnail' => $newName
@@ -126,12 +127,14 @@ class ArticleController extends ResourceController
                 $file->move('../public/assets/images/articles', $newName);
 
                 $result = $articleModel->update([
+                    'slug' => url_title($this->request->getPost('title'), '-', TRUE),
                     'title' => $this->request->getPost('title'),
                     'thumbnail' => $newName,
                     'content' => $this->request->getPost('content')
                 ]);
             } else {
                 $result = $articleModel->update([
+                    'slug' => url_title($this->request->getPost('title'), '-', TRUE),
                     'title' => $this->request->getPost('title'),
                     'content' => $this->request->getPost('content')
                 ]);

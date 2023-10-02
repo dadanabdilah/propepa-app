@@ -38,97 +38,9 @@
                 </div>
             </div>
         </nav>
-
-        <div class="heading">
-            <div class="container">
-                <div class="row col-12 d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-md-5 heading-text">
-                        <h1>Selamat Datang</h1>
-                        <h2>DI PROPEPA</h2>
-                        <p><?= setting()->get('App.siteIntroText') ?></p>
-
-                        <div class="btn-auth">
-                            <a href="<?= site_url('login') ?>" class="btn btn-login me-2 mb-3 mb-sm-3 mb-md-0">Masuk</a>
-                            <a href="<?= site_url('register') ?>" class="btn btn-register">Daftar</a>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-7">
-                        <img class="d-none d-lg-block" src="<?= base_url() ?>assets/images/main/header-img.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="d-none d-md-flex align-items-start">
-                <img src="<?= base_url() ?>assets/images/main/batik-left.png" alt="">
-            </div>
-        </div>
     </header>
 
     <main>
-        <section class="what-is" id="about">
-            <div class="container">
-                <div class="row col-12 d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-md-6">
-                        <h1>Apa Itu PROPEPA?</h1>
-                        <p><?= setting()->get('App.siteAbout') ?></p>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <img class="img-fluid" src="<?= base_url() ?>assets/images/main/what-is.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="d-none d-md-flex align-items-end">
-                <img class="ms-auto" src="<?= base_url() ?>assets/images/main/batik-right.png" alt="">
-            </div>
-        </section>
-
-        <section class="benefit" id="benefit">
-            <div class="container">
-                <div class="row col-12">
-                    <h1>Apa yang diperoleh dari PROPEPA??</h1>
-                    <p class="subtitle">Sebagai guru, anda akan bergabung di platform ruang belajar Projek Profil Pelajar Pancasila (PROPEPA),
-                        di sini anda dapat mengeksplorasi semua hal berkaitan dengan PROPEPA.</p>
-
-                    <div class="col-12 col-md-3 text-center">
-                        <img class="img-fluid" src="<?= base_url() ?>assets/images/main/benefit-1.png" alt="">
-                        <p class="mt-3 p-2 fs-5">Komunitas belajar
-                            secara daring yang
-                            menghubungkan
-                            dengan guru-guru
-                            di Indonesia</p>
-                    </div>
-                    <div class="col-12 col-md-3 text-center">
-                        <img class="img-fluid" src="<?= base_url() ?>assets/images/main/benefit-2.png" alt="">
-                        <p class="mt-3 p-2 fs-5">Dapat berbagi informasi melalui ruang opini/chat secara real time dengan tutor atau rekan sejawat.</p>
-                    </div>
-                    <div class="col-12 col-md-3 text-center">
-                        <img class="img-fluid" src="<?= base_url() ?>assets/images/main/benefit-3.png" alt="">
-                        <p class="mt-3 p-2 fs-5">Memperoleh dan berbagi perangkat pembelajaran sebagai referensi belajar pengembangan P5.</p>
-                    </div>
-                    <div class="col-12 col-md-3 text-center">
-                        <img class="img-fluid" src="<?= base_url() ?>assets/images/main/benefit-4.png" alt="">
-                        <p class="mt-3 p-2 fs-5">Memperoleh dan berbagi modul pembelajarn untuk meningkatkan pemahaman.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="d-none d-md-flex align-items-start">
-                <img src="<?= base_url() ?>assets/images/main/batik-left.png" alt="">
-            </div>
-        </section>
-
-        <section class="about-us">
-            <div class="container pb-5">
-                <div class="row col-12 text-center mb-3">
-                    <h1 class="mt-5">Tentang Kami</h1>
-                </div>
-                <div class="ratio ratio-16x9">
-                    <iframe src="<?= setting()->get('App.siteVideoURL') ?>" title="YouTube video"></iframe>
-                </div>
-            </div>
-            <div class="d-none d-md-flex align-items-end">
-                <img class="ms-auto" src="<?= base_url() ?>assets/images/main/batik-light.png" alt="">
-            </div>
-        </section>
-
         <section class="articles">
             <div class="container pb-5">
                 <div class="row col-12 text-center mb-3">
@@ -136,7 +48,7 @@
                 </div>
                 <div class="row col-12 col-md-12">
                     <?php foreach ($articles as $article) : ?>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-12 mt-3">
                             <div class="card">
                                 <img src="<?= base_url('assets/images/articles/' . $article->thumbnail) ?>" class="card-img-top img-fluid" alt="<?= $article->title ?>">
                                 <div class="card-body">
@@ -147,12 +59,6 @@
                         </div>
                     <?php endforeach ?>
                 </div>
-                <div class="text-center mt-4">
-                    <a href="<?= base_url('/artikel') ?>" class="btn btn-danger text-white">Lihat Semua Artikel</a>
-                </div>
-            </div>
-            <div class="d-none d-md-flex align-items-start">
-                <img src="<?= base_url() ?>assets/images/main/batik-left.png" alt="">
             </div>
         </section>
     </main>
@@ -195,8 +101,8 @@
                 </div>
             </div>
         </div>
-        <div class="d-none d-md-flex align-items-end">
-            <img class="ms-auto" src="<?= base_url() ?>assets/images/main/batik-right.png" alt="">
+        <div class="d-none d-md-flex align-items-start">
+            <img src="<?= base_url() ?>assets/images/main/batik-left.png" alt="">
         </div>
     </section>
 
