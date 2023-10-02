@@ -136,4 +136,7 @@ public/assets/images/category-modules/*
 public/assets/images/users/*
 !public/assets/images/users/.gitkeep
 
+public/assets/images/articles/*
+!public/assets/images/articles/.gitkeep
+
 !public/assets/libs/*/dist

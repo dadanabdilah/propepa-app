@@ -28,6 +28,8 @@
 
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="<?= base_url('assets/css/styles.min.css') ?>" />
+
+    <?= $this->renderSection('css') ?>
 </head>
 
 <body>
@@ -65,6 +67,14 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('admin/articles') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-article"></i>
+                                </span>
+                                <span class="hide-menu">Artikel</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="<?= site_url('admin/study-references') ?>" aria-expanded="false">
@@ -217,6 +227,11 @@
                                                 <a href="<?= site_url('admin/profile') ?>" class="py-8 px-7 mt-8 d-flex align-items-center">
                                                     <div class="w-100 d-inline-block v-middle">
                                                         <h6 class="mb-1 bg-hover-primary fw-semibold"> Edit Profil </h6>
+                                                    </div>
+                                                </a>
+                                                <a class="py-8 px-7 mt-8 d-flex align-items-center" href="<?= site_url('admin/logout') ?>">
+                                                    <div class="w-100 d-inline-block v-middle">
+                                                        <h6 class="mb-1 bg-hover-primary fw-semibold"> Logout </h6>
                                                     </div>
                                                 </a>
                                             </div>

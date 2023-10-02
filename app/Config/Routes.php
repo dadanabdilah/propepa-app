@@ -99,6 +99,8 @@ $routes->group("admin", ["filter" => ["visits", "loginFilter", "authFilter", "us
 
     $routes->resource("profile", ['controller' => 'ProfileController', 'except' => 'show', 'edit', 'new', 'create', 'update', 'delete']);
 
+    $routes->resource("articles", ['controller' => 'ArticleController', 'except' => 'show']);
+
     $routes->put('settings', 'SettingController::update');
     $routes->resource("settings", ['controller' => 'SettingController', 'except' => 'show', 'update']);
 });

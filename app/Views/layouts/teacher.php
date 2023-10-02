@@ -222,6 +222,11 @@
                                                         <h6 class="mb-1 bg-hover-primary fw-semibold"> Edit Profil </h6>
                                                     </div>
                                                 </a>
+                                                <a class="py-8 px-7 mt-8 d-flex align-items-center" href="<?= site_url('admin/logout') ?>">
+                                                    <div class="w-100 d-inline-block v-middle">
+                                                        <h6 class="mb-1 bg-hover-primary fw-semibold"> Logout </h6>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
