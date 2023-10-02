@@ -5,6 +5,7 @@ namespace App\Controllers\Teacher;
 use CodeIgniter\RESTful\ResourceController;
 
 use App\Models\UserIdentityModel;
+use App\Models\UserModel;
 
 class ProfileController extends ResourceController
 {
@@ -80,7 +81,7 @@ class ProfileController extends ResourceController
     {
         if (!$this->validate([
             'name' => 'required|min_length[3]',
-            'email' => 'required|valid_email|is_unique[auth_identities.secret,id,' . $id . ']',
+            'email' => 'required|valid_email|is_unique[auth_identities.secret,user_id,' . $id . ']',
             'password' => 'permit_empty|min_length[7]'
         ])) {
             session()->setFlashdata('error', $this->validator->listErrors());
@@ -89,11 +90,30 @@ class ProfileController extends ResourceController
         }
 
         $identityId = $this->UserIdentity->select('id AS identity_id')->where('user_id', $id)->first()->identity_id;
+        $user = $this->model->find($id);
+
+        if ($file = $this->request->getFile('avatar')) {
+            if ($file->isValid() && !$file->hasMoved()) {
+                if ($user->avatar) {
+                    unlink('assets/images/users/' . $user->avatar);
+                }
+
+                $newName = $file->getRandomName();
+
+                $file->move('../public/assets/images/users', $newName);
+
+                $this->model->update($id, [
+                    'avatar' => $newName
+                ]);
+            }
+        }
+
+        $this->model->update($id, [
+            'name' => $this->request->getPost('name')
+        ]);
 
         $requestIdentity = [
             'id' => $identityId,
-            'user_id' => $id,
-            'name' => $this->request->getPost('name'),
             'institution' => $this->request->getPost('institution'),
             'whatsapp_number' => $this->request->getPost('whatsapp_number'),
             'address' => $this->request->getPost('address'),
@@ -114,7 +134,7 @@ class ProfileController extends ResourceController
             session()->setFlashdata('error', 'Update Profil Tidak Berhasil');
         }
 
-        return redirect()->to('admin/profile');
+        return redirect()->to('profile');
     }
 
     /**

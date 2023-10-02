@@ -12,6 +12,8 @@ class UserModel extends UserMod
         'username',
         'status',
         'status_message',
+        'name',
+        'avatar',
         'active',
         'last_active',
         'deleted_at',

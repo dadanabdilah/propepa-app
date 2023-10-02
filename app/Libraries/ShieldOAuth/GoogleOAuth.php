@@ -84,14 +84,6 @@ class GoogleOAuth extends AbstractOAuth
 
     protected function setColumnsName(string $nameOfProcess, $userInfo): array
     {
-        if ($nameOfProcess === 'syncingUserInfo') {
-            return [
-                $this->config->usersColumnsName['first_name'] => $userInfo->name,
-                $this->config->usersColumnsName['last_name']  => $userInfo->family_name ?? '',
-                $this->config->usersColumnsName['avatar']     => $userInfo->picture,
-            ];
-        }
-
         if ($nameOfProcess === 'newUser') {
             return [
                 // users tbl                                    // OAuth
@@ -99,12 +91,27 @@ class GoogleOAuth extends AbstractOAuth
                 'email'                                       => $userInfo->email,
                 'password'                                    => random_string('crypto', 32),
                 'active'                                      => $userInfo->email_verified,
-                $this->config->usersColumnsName['first_name'] => $userInfo->given_name,
-                $this->config->usersColumnsName['last_name']  => $userInfo->family_name ?? '',
-                $this->config->usersColumnsName['avatar']     => $userInfo->picture,
+                $this->config->usersColumnsName['name']       => $userInfo->given_name . ' ' . $userInfo->family_name,
+                $this->config->usersColumnsName['avatar']     => url_title($userInfo->given_name, '-', TRUE) . '.png',
+                $this->grabImage($userInfo->picture, '../public/assets/images/users/' . url_title($userInfo->given_name, '-', TRUE) . '.png')
             ];
         }
 
         return [];
+    }
+
+    function grabImage($url, $saveto)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $raw = curl_exec($ch);
+        curl_close($ch);
+        if (file_exists($saveto)) {
+            unlink($saveto);
+        }
+        $fp = fopen($saveto, 'x');
+        fwrite($fp, $raw);
+        fclose($fp);
     }
 }

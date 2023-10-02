@@ -89,10 +89,30 @@ class ProfileController extends ResourceController
         }
 
         $identityId = $this->UserIdentity->select('id AS identity_id')->where('user_id', $id)->first()->identity_id;
+        $user = $this->model->find($id);
+
+        if ($file = $this->request->getFile('avatar')) {
+            if ($file->isValid() && !$file->hasMoved()) {
+                if ($user->avatar) {
+                    unlink('assets/images/users/' . $user->avatar);
+                }
+
+                $newName = $file->getRandomName();
+
+                $file->move('../public/assets/images/users', $newName);
+
+                $this->model->update($id, [
+                    'avatar' => $newName
+                ]);
+            }
+        }
+
+        $this->model->update($id, [
+            'name' => $this->request->getPost('name')
+        ]);
 
         $requestIdentity = [
             'id' => $identityId,
-            'user_id' => $id,
             'name' => $this->request->getPost('name'),
             'institution' => $this->request->getPost('institution'),
             'whatsapp_number' => $this->request->getPost('whatsapp_number'),

@@ -47,9 +47,21 @@ class RegisterController extends BaseController
             return redirect()->back()->withInput();
         }
 
+        $newName = '';
+
+        if ($file = $this->request->getFile('avatar')) {
+            if ($file->isValid() && !$file->hasMoved()) {
+                $newName = $file->getRandomName();
+
+                $file->move('../public/assets/images/users', $newName);
+            }
+        }
+
         $request = [
             'username' => time(),
-            'active' => 1
+            'name' => $this->request->getPost('name'),
+            'avatar' => $newName,
+            'active' => 1,
         ];
 
         $result = $this->UserModel->save($request);
@@ -58,7 +70,6 @@ class RegisterController extends BaseController
         $requestIdentity = [
             'user_id' => $userId,
             'type' => 'email_password',
-            'name' => $this->request->getPost('name'),
             'institution' => $this->request->getPost('institution'),
             'whatsapp_number' => $this->request->getPost('whatsapp_number'),
             'address' => $this->request->getPost('address'),
