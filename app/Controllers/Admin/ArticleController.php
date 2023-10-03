@@ -68,7 +68,7 @@ class ArticleController extends ResourceController
                 $result = ArticleModel::create([
                     'slug' => url_title($this->request->getPost('title'), '-', TRUE),
                     'title' => $this->request->getPost('title'),
-                    'content' => $this->request->getPost('content'),
+                    'content' => nl2br($this->request->getPost('content')),
                     'thumbnail' => $newName
                 ]);
 
