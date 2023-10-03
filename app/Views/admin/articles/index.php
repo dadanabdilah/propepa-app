@@ -43,7 +43,6 @@ Data Artikel
                                     <th>No</th>
                                     <th>Thumbnail</th>
                                     <th>Judul</th>
-                                    <th>Konten</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -54,9 +53,11 @@ Data Artikel
                                         <td><?= $i++ ?></td>
                                         <td><img src="<?= base_url('assets/images/articles/' . $article->thumbnail) ?>" alt="Photo" width="200"></td>
                                         <td><?= $article->title ?></td>
-                                        <td><?= substr($article->content, 0, 200) ?></td>
                                         <td width="20%">
                                             <div class="action-btn">
+                                                <a href="<?= site_url('artikel/' . $article->slug) ?>" class="btn btn-success" data-bs-toggle="tooltip" title="Lihat" target="_blank">
+                                                    <i class="ti ti-eye fs-5"></i>
+                                                </a>
                                                 <a href="<?= site_url('admin/articles/' . $article->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
                                                     <i class="ti ti-pencil fs-5"></i>
                                                 </a>

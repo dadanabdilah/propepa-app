@@ -49,7 +49,7 @@
                             <img src="<?= base_url('assets/images/articles/' . $article->thumbnail) ?>" class="card-img-top img-fluid" alt="<?= $article->title ?>">
                             <div class="card-body">
                                 <h1 class="card-title"><a href="<?= site_url('artikel/' . $article->slug) ?>"><?= $article->title ?></a></h1>
-                                <p class="card-text"><?= substr($article->content, 0, 50) ?></p>
+                                <p class="card-text"><?= $article->content ?></p>
                             </div>
                         </div>
                     </div>

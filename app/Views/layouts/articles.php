@@ -48,12 +48,11 @@
                 </div>
                 <div class="row col-12 col-md-12">
                     <?php foreach ($articles as $article) : ?>
-                        <div class="col-12 col-md-12 mt-3">
+                        <div class="col-12 col-md-6 mt-3 mb-2">
                             <div class="card">
                                 <img src="<?= base_url('assets/images/articles/' . $article->thumbnail) ?>" class="card-img-top img-fluid" alt="<?= $article->title ?>">
                                 <div class="card-body">
                                     <h5 class="card-title"><a href="<?= site_url('artikel/' . $article->slug) ?>"><?= $article->title ?></a></h5>
-                                    <p class="card-text"><?= substr($article->content, 0, 50) ?></p>
                                 </div>
                             </div>
                         </div>
