@@ -49,7 +49,7 @@
                             <img src="<?= base_url('assets/images/articles/' . $article->thumbnail) ?>" class="card-img-top img-fluid" alt="<?= $article->title ?>">
                             <div class="card-body">
                                 <h1 class="card-title"><a href="<?= site_url('artikel/' . $article->slug) ?>"><?= $article->title ?></a></h1>
-                                <p class="card-text"><?= $article->content ?></p>
+                                <p class="card-text"><?= htmlspecialchars_decode($article->content, ENT_HTML5) ?></p>
                             </div>
                         </div>
                     </div>
