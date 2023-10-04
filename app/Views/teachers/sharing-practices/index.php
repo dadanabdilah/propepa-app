@@ -52,7 +52,7 @@ Praktik Berbagi
                                                 <div class="card p-0">
                                                     <div class="card-body">
                                                         <div class="card-title">
-                                                            <?= $sharingPractice->title ?> | <?= $sharingPractice->UserIdentity->name ?>
+                                                            <?= $sharingPractice->title ?> | <?= $sharingPractice->User->name ?>
                                                         </div>
                                                         <p><?= $sharingPractice->description ?></p>
                                                         <p>Status Review:</p>
@@ -86,12 +86,12 @@ Praktik Berbagi
                             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <?php foreach ($sharingPractices as $sharingPractice) : ?>
-                                        <?php if ($sharingPractice->category_viideo_id) : ?>
+                                        <?php if ($sharingPractice->category_reference_id) : ?>
                                             <div class="row">
                                                 <div class="card p-0">
                                                     <div class="card-body">
                                                         <div class="card-title">
-                                                            <?= $sharingPractice->title ?> | <?= $sharingPractice->UserIdentity->name ?>
+                                                            <?= $sharingPractice->title ?> | <?= $sharingPractice->User->name ?>
                                                         </div>
                                                         <p><?= $sharingPractice->description ?></p>
                                                         <p>
