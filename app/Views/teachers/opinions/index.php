@@ -64,7 +64,14 @@ Berbagi Opini
                                     <form action="<?= site_url('admin/opinions') ?>" method="POST" id="opinion">
                                         <?= csrf_field() ?>
 
-                                        <textarea name="opinion" class="form-control text-muted border-0 p-0 ms-2" rows="5" placeholder="Ketik Pesan" id="text-opinion"></textarea>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center gap-2 w-85">
+                                                <textarea name="opinion" class="form-control text-muted border-0 p-0 ms-2" rows="5" placeholder="Ketik Pesan" id="text-opinion"></textarea>
+                                            </div>
+                                            <ul class="list-unstyledn mb-0 d-flex align-items-center">
+                                                <li><button type="button" class="btn text-dark px-2 fs-7 bg-hover-white nav-icon-hover position-relative z-index-5 " id="btn-submit"><i class="ti ti-send"></i></button></li>
+                                            </ul>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -83,6 +90,20 @@ Berbagi Opini
         $('.chat-box .active-chat').slice(-1)[0].scrollIntoView({
             block: "end"
         });
+
+        $('#btn-submit').on('click', (e) => {
+            e.preventDefault();
+
+            let $form = $(this),
+                opinionText = $('#text-opinion').val(),
+                url = $form.attr("action");
+
+            let posting = $.post(url, {
+                opinion: opinionText
+            });
+
+            $('textarea').val('')
+        })
 
         $("textarea").keydown(function(e) {
             if (e.keyCode == 13 && !e.shiftKey) {
