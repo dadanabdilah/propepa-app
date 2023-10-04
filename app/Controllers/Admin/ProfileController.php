@@ -113,7 +113,6 @@ class ProfileController extends ResourceController
 
         $requestIdentity = [
             'id' => $identityId,
-            'name' => $this->request->getPost('name'),
             'institution' => $this->request->getPost('institution'),
             'whatsapp_number' => $this->request->getPost('whatsapp_number'),
             'address' => $this->request->getPost('address'),

@@ -11,11 +11,11 @@ class OpinionModel extends Model
 
     public function User()
     {
-        return $this->belongsTo(UserIdentity::class, 'user_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
 
-class UserIdentity extends Model
+class User extends Model
 {
-    protected $table = "auth_identities";
+    protected $table = "users";
 }
