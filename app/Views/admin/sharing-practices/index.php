@@ -62,7 +62,7 @@ Data Kategori Referensi
                                             <td><?= $sharingPractice->CategoryModule->name ?? '' ?></td>
                                         <?php endif ?>
                                         <td><?= $sharingPractice->description ?></td>
-                                        <td><?= $sharingPractice->UserIdentity->name ?></td>
+                                        <td><?= $sharingPractice->User->name ?></td>
                                         <td> <?php if ($sharingPractice->status == "WAIT_FOR_REVIEW") : ?>
                                                 <span class="badge bg-primary">Menunggu Review</span>
                                             <?php elseif ($sharingPractice->status == "APPROVE") : ?>
