@@ -44,7 +44,7 @@ Berbagi Opini
                                                     <div>
                                                         <h6 class="fs-2 text-muted"><?= $opinion->User->name ?></h6>
                                                         <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> <?= $opinion->opinion ?></div>
-                                                        <a href="javascript:void(0)" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                                                        <a href="#" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
                                                             <i class="ti ti-trash fs-5"></i>
                                                         </a>
                                                     </div>
@@ -55,7 +55,7 @@ Berbagi Opini
                                                 <div class="hstack gap-3 align-items-start mb-7 justify-content-end">
                                                     <div class="text-end">
                                                         <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> <?= $opinion->opinion ?></div>
-                                                        <a href="javascript:void(0)" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                                                        <a href="#" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
                                                             <i class="ti ti-trash fs-5"></i>
                                                         </a>
                                                     </div>
@@ -167,7 +167,7 @@ Berbagi Opini
                     <div>
                         <h6 class="fs-2 text-muted">${data.opinions.user.name}</h6>
                         <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> ${data.opinions.opinion}</div>
-                        <a href="javascript:void(0)" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                        <a href="#" class="btn delete-alert" data-action="<?= site_url('admin/opinions/') ?>${data.opinions.id}" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
                             <i class="ti ti-trash fs-5"></i>
                         </a>
                     </div>
@@ -176,14 +176,14 @@ Berbagi Opini
             ${data.opinions.user_id == userId ? `<div class="hstack gap-3 align-items-start mb-7 justify-content-end">
                     <div class="text-end">
                         <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> ${data.opinions.opinion}</div>
-                        <a href="javascript:void(0)" class="btn delete-alert" data-action="<?= site_url('admin/opinions/' . $opinion->id) ?>" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
+                        <a href="#" class="btn delete-alert" data-action="<?= site_url('admin/opinions/') ?>${data.opinions.id}" data-csrf-name="<?= csrf_token() ?>" data-csrf-token="<?= csrf_hash() ?>" data-bs-toggle="tooltip" title="Hapus">
                             <i class="ti ti-trash fs-5"></i>
                         </a>
                     </div>
                 </div>` : '' }
            `
 
-        $('#chat-room').html(chatDOM);
+        $('#chat-room').html(chatDOM)
     })
 </script>
 <?= $this->endSection() ?>

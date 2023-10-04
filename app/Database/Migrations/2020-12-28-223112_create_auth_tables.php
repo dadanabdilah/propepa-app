@@ -52,7 +52,6 @@ class CreateAuthTables extends Migration
             'id'           => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'user_id'      => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'type'         => ['type' => 'varchar', 'constraint' => 255],
-            'name'         => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'institution'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'whatsapp_number'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'address'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],

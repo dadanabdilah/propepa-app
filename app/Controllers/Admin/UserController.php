@@ -76,7 +76,8 @@ class UserController extends ResourceController
 
         $request = [
             'username' => time(),
-            'active' => 0
+            'name' => $this->request->getPost('name'),
+            'active' => 1
         ];
 
         $result = $this->model->save($request);
@@ -85,7 +86,6 @@ class UserController extends ResourceController
         $requestIdentity = [
             'user_id' => $userId,
             'type' => 'email_password',
-            'name' => $this->request->getPost('name'),
             'institution' => $this->request->getPost('institution'),
             'whatsapp_number' => $this->request->getPost('whatsapp_number'),
             'address' => $this->request->getPost('address'),
@@ -134,7 +134,7 @@ class UserController extends ResourceController
     {
         if (!$this->validate([
             'name' => 'required|min_length[3]',
-            'email' => 'required|valid_email|is_unique[auth_identities.secret,id,' . $id . ']',
+            'email' => 'required|valid_email|is_unique[auth_identities.secret,user_id,' . $id . ']',
             'group' => 'required|in_list[admin,teacher,student]',
             'password' => 'permit_empty|min_length[7]'
         ])) {
@@ -144,11 +144,14 @@ class UserController extends ResourceController
         }
 
         $identityId = $this->UserIdentity->select('id AS identity_id')->where('user_id', $id)->first()->identity_id;
+        $user = $this->model->find($id);
+
+        $this->model->update($id, [
+            'name' => $this->request->getPost('name')
+        ]);
 
         $requestIdentity = [
             'id' => $identityId,
-            'user_id' => $id,
-            'name' => $this->request->getPost('name'),
             'institution' => $this->request->getPost('institution'),
             'whatsapp_number' => $this->request->getPost('whatsapp_number'),
             'address' => $this->request->getPost('address'),

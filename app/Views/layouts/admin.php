@@ -35,11 +35,11 @@
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="<?= base_url('assets/images/logos/favicon.ico') ?>" alt="loader" class="lds-ripple img-fluid" />
+        <img src="<?= base_url('assets/images/logos/logo.png') ?>" alt="loader" class="lds-ripple img-fluid" />
     </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="<?= base_url('assets/images/logos/favicon.ico') ?>" alt="loader" class="lds-ripple img-fluid" />
+        <img src="<?= base_url('assets/images/logos/logo.png') ?>" alt="loader" class="lds-ripple img-fluid" />
     </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
@@ -295,7 +295,7 @@
         <?php endif ?>
 
         <script>
-            $(".delete-alert").on("click", function(event) {
+            $(document).on('click', '.delete-alert', function(event) {
                 event.preventDefault();
                 Swal.fire({
                     title: "Apakah anda yakin?",
