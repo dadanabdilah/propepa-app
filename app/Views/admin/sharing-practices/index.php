@@ -72,13 +72,14 @@ Data Kategori Referensi
                                             <?php endif ?>
                                         </td>
                                         <td width="20%">
-                                            <?php if ($sharingPractice->status == "WAIT_FOR_REVIEW") : ?>
-                                                <div class="action-btn">
-                                                    <a href="<?= site_url('admin/sharing-practices/' . $sharingPractice->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
-                                                        <i class="ti ti-pencil fs-5"></i>
-                                                    </a>
-                                                </div>
-                                            <?php endif ?>
+                                            <div class="action-btn">
+                                                <a href="<?= $sharingPractice->url ?>" class="btn btn-primary" data-bs-toggle="tooltip" title="Download" target="_blank">
+                                                    <i class="ti ti-download fs-5"></i>
+                                                </a>
+                                                <a href="<?= site_url('admin/sharing-practices/' . $sharingPractice->id . '/edit') ?>" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="ti ti-pencil fs-5"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
