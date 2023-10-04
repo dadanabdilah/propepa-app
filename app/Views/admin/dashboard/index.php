@@ -8,7 +8,7 @@ Dashboard
 <div class="row">
     <div class="d-flex align-items-center gap-4 mb-4">
         <div>
-            <h3 class="fw-semibold">Halo, <span class="text-dark"><?= auth()->user()->identities[0]->name ?></span>
+            <h3 class="fw-semibold">Halo, <span class="text-dark"><?= auth()->user()->name ?></span>
             </h3>
             <span>Selamat datang di dashboard propepa.</span>
         </div>
@@ -127,7 +127,7 @@ Dashboard
                                     <?php foreach ($studyReferences as $studyReference) : ?>
                                         <tr>
                                             <td class="ps-0">
-                                                <span><?= $studyReference->UserIdentity->name ?></span>
+                                                <span><?= $studyReference->User->name ?></span>
                                             </td>
                                             <td class="ps-0">
                                                 <span><?= $studyReference->title ?></span>
@@ -158,7 +158,7 @@ Dashboard
                                     <?php foreach ($studyModules as $studyModule) : ?>
                                         <tr>
                                             <td class="ps-0">
-                                                <span><?= $studyModule->UserIdentity->name ?></span>
+                                                <span><?= $studyModule->User->name ?></span>
                                             </td>
                                             <td class="ps-0">
                                                 <span><?= $studyModule->title ?></span>

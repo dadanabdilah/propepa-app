@@ -55,7 +55,7 @@ Edit Data Praktik Berbagi
                     <div class="mb-4 row align-items-center">
                         <label class="form-label fw-semibold col-sm-3 col-form-label">Guru</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="user_id" placeholder="Guru" value="<?= $sharingPractice->UserIdentity->name ?>" disabled required>
+                            <input type="text" class="form-control" name="user_id" placeholder="Guru" value="<?= $sharingPractice->User->name ?>" disabled required>
                         </div>
                     </div>
                     <div class="mb-4 row align-items-center">
