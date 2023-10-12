@@ -6,6 +6,8 @@ use CodeIgniter\RESTful\ResourceController;
 
 use App\Models\CategoryReferenceModel;
 
+use Exception;
+
 class CategoryReferenceController extends ResourceController
 {
     /**
@@ -15,7 +17,16 @@ class CategoryReferenceController extends ResourceController
      */
     public function index()
     {
-        return $this->response->setJSON(['code' => 200, 'categoryReferences' => CategoryReferenceModel::all()]);
+        try {
+            return $this->response->setJSON(['code' => 200, 'categoryReferences' => CategoryReferenceModel::all()]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**

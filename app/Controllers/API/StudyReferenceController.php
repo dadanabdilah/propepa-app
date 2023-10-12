@@ -7,6 +7,8 @@ use CodeIgniter\RESTful\ResourceController;
 use App\Models\StudyReferenceModel;
 use App\Models\CategoryReferenceModel;
 
+use Exception;
+
 class StudyReferenceController extends ResourceController
 {
     /**
@@ -16,7 +18,16 @@ class StudyReferenceController extends ResourceController
      */
     public function index()
     {
-        return $this->response->setJSON(['code' => 200, 'studyReferences' => StudyReferenceModel::with('CategoryReference')->latest()->get()]);
+        try {
+            return $this->response->setJSON(['code' => 200, 'studyReferences' => StudyReferenceModel::with('CategoryReference')->latest()->get()]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**
@@ -26,12 +37,21 @@ class StudyReferenceController extends ResourceController
      */
     public function show($id = null)
     {
-        $data = [
-            'categoryReference' => CategoryReferenceModel::find($id),
-            'studyReferences' => StudyReferenceModel::where('category_reference_id', $id)->get()
-        ];
+        try {
+            $data = [
+                'categoryReference' => CategoryReferenceModel::find($id),
+                'studyReferences' => StudyReferenceModel::where('category_reference_id', $id)->get()
+            ];
 
-        return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+            return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**
@@ -41,7 +61,16 @@ class StudyReferenceController extends ResourceController
      */
     public function new()
     {
-        return $this->response->setJSON(['code' => 200, 'categoryReferences' => CategoryReferenceModel::latest()->get()]);
+        try {
+            return $this->response->setJSON(['code' => 200, 'categoryReferences' => CategoryReferenceModel::latest()->get()]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**

@@ -8,6 +8,8 @@ use App\Models\OpinionModel;
 
 use Pusher\Pusher;
 
+use Exception;
+
 class OpinionController extends ResourceController
 {
     /**
@@ -17,12 +19,21 @@ class OpinionController extends ResourceController
      */
     public function index()
     {
-        $data = [
-            'opinions' => OpinionModel::with('User')->get(),
-            'PUSHER_APP_KEY' => env('PUSHER_APP_KEY')
-        ];
+        try {
+            $data = [
+                'opinions' => OpinionModel::with('User')->get(),
+                'PUSHER_APP_KEY' => env('PUSHER_APP_KEY')
+            ];
 
-        return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+            return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**

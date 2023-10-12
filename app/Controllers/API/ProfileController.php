@@ -6,6 +6,8 @@ use CodeIgniter\RESTful\ResourceController;
 
 use App\Models\UserIdentityModel;
 
+use Exception;
+
 class ProfileController extends ResourceController
 {
     private $UserIdentity;
@@ -24,7 +26,16 @@ class ProfileController extends ResourceController
      */
     public function index()
     {
-        return $this->response->setJSON(['code' => 200, 'user' => $this->model->getIdentityById(auth()->id())]);
+        try {
+            return $this->response->setJSON(['code' => 200, 'user' => $this->model->getIdentityById(auth()->id())]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**
@@ -74,38 +85,66 @@ class ProfileController extends ResourceController
      */
     public function update($id = null)
     {
-        if (!$this->validate([
-            'name' => 'required|min_length[3]',
-            'email' => 'required|valid_email|is_unique[auth_identities.secret,id,' . $id . ']',
-            'password' => 'permit_empty|min_length[7]'
-        ])) {
-            return $this->response
-                ->setJSON(['code' => 401, 'errors' => $this->validator->getErrors()])
-                ->setStatusCode(401);
-        }
+        try {
+            if (!$this->validate([
+                'name' => 'required|min_length[3]',
+                'email' => 'required|valid_email|is_unique[auth_identities.secret,id,' . $id . ']',
+                'password' => 'permit_empty|min_length[7]'
+            ])) {
+                return $this->response
+                    ->setJSON(['code' => 401, 'errors' => $this->validator->getErrors()])
+                    ->setStatusCode(401);
+            }
 
-        $identityId = $this->UserIdentity->select('id AS identity_id')->where('user_id', $id)->first()->identity_id;
+            $identityId = $this->UserIdentity->select('id AS identity_id')->where('user_id', $id)->first()->identity_id;
+            $user = $this->model->find($id);
 
-        $requestIdentity = [
-            'id' => $identityId,
-            'user_id' => $id,
-            'name' => $this->request->getPost('name'),
-            'institution' => $this->request->getPost('institution'),
-            'whatsapp_number' => $this->request->getPost('whatsapp_number'),
-            'address' => $this->request->getPost('address'),
-            'secret' => $this->request->getPost('email')
-        ];
+            if ($file = $this->request->getFile('avatar')) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    if ($user->avatar) {
+                        unlink('assets/images/users/' . $user->avatar);
+                    }
 
-        if (!empty($this->request->getPost('password'))) {
-            $requestIdentity += [
-                'secret2' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT, $this->getHashOptions())
+                    $newName = $file->getRandomName();
+
+                    $file->move('../public/assets/images/users', $newName);
+
+                    $this->model->update($id, [
+                        'avatar' => $newName
+                    ]);
+                }
+            }
+
+            $this->model->update($id, [
+                'name' => $this->request->getPost('name')
+            ]);
+
+            $requestIdentity = [
+                'id' => $identityId,
+                'institution' => $this->request->getPost('institution'),
+                'whatsapp_number' => $this->request->getPost('whatsapp_number'),
+                'address' => $this->request->getPost('address'),
+                'secret' => $this->request->getPost('email')
             ];
+
+            if (!empty($this->request->getPost('password'))) {
+                $requestIdentity += [
+                    'secret2' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT, $this->getHashOptions())
+                ];
+            }
+
+            $this->UserIdentity->save($requestIdentity);
+
+            return $this->response
+                ->setJSON(['code' => 200, 'message' => "Berhasil mengubah data"]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
         }
-
-        $result = $this->UserIdentity->save($requestIdentity);
-
-        return $this->response
-            ->setJSON(['code' => 200, 'messages' => "Berhasil menambahkan data"]);
     }
 
     /**

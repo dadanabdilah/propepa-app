@@ -4,6 +4,8 @@ namespace App\Controllers\API;
 
 use CodeIgniter\RESTful\ResourceController;
 
+use Exception;
+
 class StudyCommunityController extends ResourceController
 {
     public function __construct()
@@ -18,12 +20,21 @@ class StudyCommunityController extends ResourceController
      */
     public function index()
     {
-        $data = [
-            'whatsapp' => setting()->get('App.siteWhatsappGroupURL'),
-            'telegram' => setting()->get('App.siteTelegramGroupURL')
-        ];
+        try {
+            $data = [
+                'whatsapp' => setting()->get('App.siteWhatsappGroupURL'),
+                'telegram' => setting()->get('App.siteTelegramGroupURL')
+            ];
 
-        return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+            return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**

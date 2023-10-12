@@ -6,6 +6,8 @@ use CodeIgniter\RESTful\ResourceController;
 
 use App\Models\CategoryModuleModel;
 
+use Exception;
+
 class CategoryModuleController extends ResourceController
 {
     /**
@@ -15,7 +17,16 @@ class CategoryModuleController extends ResourceController
      */
     public function index()
     {
-        return $this->response->setJSON(['code' => 200, 'categoryModules' => CategoryModuleModel::all()]);
+        try {
+            return $this->response->setJSON(['code' => 200, 'categoryModules' => CategoryModuleModel::all()]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**

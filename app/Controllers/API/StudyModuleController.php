@@ -7,6 +7,8 @@ use CodeIgniter\RESTful\ResourceController;
 use App\Models\StudyModuleModel;
 use App\Models\CategoryModuleModel;
 
+use Exception;
+
 class StudyModuleController extends ResourceController
 {
     /**
@@ -16,7 +18,16 @@ class StudyModuleController extends ResourceController
      */
     public function index()
     {
-        return $this->response->setJSON(['code' => 200, 'studyModules' => StudyModuleModel::with('CategoryModule')->latest()->get()]);
+        try {
+            return $this->response->setJSON(['code' => 200, 'studyModules' => StudyModuleModel::with('CategoryModule')->latest()->get()]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**
@@ -26,12 +37,21 @@ class StudyModuleController extends ResourceController
      */
     public function show($id = null)
     {
-        $data = [
-            'categoryModule' => CategoryModuleModel::find($id),
-            'studyModules' => StudyModuleModel::where('category_module_id', $id)->get()
-        ];
+        try {
+            $data = [
+                'categoryModule' => CategoryModuleModel::find($id),
+                'studyModules' => StudyModuleModel::where('category_module_id', $id)->get()
+            ];
 
-        return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+            return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**
