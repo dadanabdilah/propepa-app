@@ -8,6 +8,8 @@ use App\Models\SharingPracticeModel;
 use App\Models\CategoryReferenceModel;
 use App\Models\CategoryModuleModel;
 
+use Exception;
+
 class SharingPracticeController extends ResourceController
 {
     /**
@@ -17,13 +19,22 @@ class SharingPracticeController extends ResourceController
      */
     public function index()
     {
-        $data = [
-            'sharingPractices' => SharingPracticeModel::where('user_id', auth()->id())->latest()->get(),
-            'sharingPracticesModule' => SharingPracticeModel::where('user_id', auth()->id())->whereNotNull('category_module_id')->count(),
-            'sharingPracticesVideo' => SharingPracticeModel::where('user_id', auth()->id())->whereNotNull('category_reference_id')->count(),
-        ];
+        try {
+            $data = [
+                'sharingPractices' => SharingPracticeModel::where('user_id', auth()->id())->latest()->get(),
+                'sharingPracticesModule' => SharingPracticeModel::where('user_id', auth()->id())->whereNotNull('category_module_id')->count(),
+                'sharingPracticesVideo' => SharingPracticeModel::where('user_id', auth()->id())->whereNotNull('category_reference_id')->count(),
+            ];
 
-        return $this->response->setJSON($data);
+            return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**
@@ -43,12 +54,30 @@ class SharingPracticeController extends ResourceController
      */
     public function newModule()
     {
-        return $this->response->setJSON(['code' => 200, 'categoryModules' => CategoryModuleModel::latest()->get()]);
+        try {
+            return $this->response->setJSON(['code' => 200, 'categoryModules' => CategoryModuleModel::latest()->get()]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     public function newVideo()
     {
-        return $this->response->setJSON(['code' => 200, 'categoryReferences' => CategoryReferenceModel::latest()->get()]);
+        try {
+            return $this->response->setJSON(['code' => 200, 'categoryReferences' => CategoryReferenceModel::latest()->get()]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 
     /**
@@ -58,42 +87,60 @@ class SharingPracticeController extends ResourceController
      */
     public function createModule()
     {
-        if (!$this->validate([
-            'title' => 'required',
-            'url' => 'required',
-            'type' => 'required',
-            'description' => 'required',
-            'category_module_id' => 'required'
-        ])) {
+        try {
+            if (!$this->validate([
+                'title' => 'required',
+                'url' => 'required',
+                'type' => 'required',
+                'description' => 'required',
+                'category_module_id' => 'required'
+            ])) {
+                return $this->response
+                    ->setJSON(['code' => 401, 'errors' => $this->validator->getErrors()])
+                    ->setStatusCode(401);
+            }
+
+            SharingPracticeModel::create($this->request->getPost());
+
             return $this->response
-                ->setJSON(['code' => 401, 'errors' => $this->validator->getErrors()])
-                ->setStatusCode(401);
+                ->setJSON(['code' => 200, 'messages' => "Berhasil menambahkan data"]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
         }
-
-        SharingPracticeModel::create($this->request->getPost());
-
-        return $this->response
-            ->setJSON(['code' => 200, 'messages' => "Berhasil menambahkan data"]);
     }
 
     public function createVideo()
     {
-        if (!$this->validate([
-            'title' => 'required',
-            'url' => 'required',
-            'type' => 'required',
-            'description' => 'required',
-            'category_reference_id' => 'required'
-        ])) {
+        try {
+            if (!$this->validate([
+                'title' => 'required',
+                'url' => 'required',
+                'type' => 'required',
+                'description' => 'required',
+                'category_reference_id' => 'required'
+            ])) {
+                return $this->response
+                    ->setJSON(['code' => 401, 'errors' => $this->validator->getErrors()])
+                    ->setStatusCode(401);
+            }
+
+            SharingPracticeModel::create($this->request->getPost());
+
             return $this->response
-                ->setJSON(['code' => 401, 'errors' => $this->validator->getErrors()])
-                ->setStatusCode(401);
+                ->setJSON(['code' => 200, 'messages' => "Berhasil menambahkan data"]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
         }
-
-        SharingPracticeModel::create($this->request->getPost());
-
-        return $this->response
-            ->setJSON(['code' => 200, 'messages' => "Berhasil menambahkan data"]);
     }
 
     /**

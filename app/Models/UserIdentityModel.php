@@ -9,7 +9,6 @@ class UserIdentityModel extends UserIdentityMod
     protected $allowedFields  = [
         'user_id',
         'type',
-        'name',
         'institution',
         'whatsapp_number',
         'address',

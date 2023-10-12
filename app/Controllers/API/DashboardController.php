@@ -7,6 +7,8 @@ use CodeIgniter\RESTful\ResourceController;
 use App\Models\CategoryModuleModel;
 use App\Models\CategoryReferenceModel;
 
+use Exception;
+
 class DashboardController extends ResourceController
 {
     /**
@@ -16,11 +18,20 @@ class DashboardController extends ResourceController
      */
     public function index()
     {
-        $data = [
-            'categoryModules' => CategoryModuleModel::latest()->limit(3)->get(),
-            'categoryReferences' => CategoryReferenceModel::latest()->limit(3)->get(),
-        ];
+        try {
+            $data = [
+                'categoryModules' => CategoryModuleModel::latest()->limit(3)->get(),
+                'categoryReferences' => CategoryReferenceModel::latest()->limit(3)->get(),
+            ];
 
-        return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+            return $this->response->setJSON(['code' => 200, 'datas' => $data]);
+        } catch (Exception $error) {
+            return $this->response
+                ->setJSON([
+                    'code' => 500,
+                    'message' => 'Something went wrong',
+                    'error' => $error,
+                ]);
+        }
     }
 }
