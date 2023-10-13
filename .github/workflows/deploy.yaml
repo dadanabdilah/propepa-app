@@ -16,7 +16,7 @@ jobs:
       - name: Install composer dependencies
         uses: php-actions/composer@v6
         with:
-          command: install
+          command: install --ignore-platform-req=ext-intl
           php_version: "8.1"
           progress: yes
 
