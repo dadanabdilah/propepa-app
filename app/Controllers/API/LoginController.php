@@ -45,7 +45,7 @@ class LoginController extends BaseController
             $token = auth()->user()->generateAccessToken('PROPEPA');
 
             return $this->response
-                ->setJSON(['code' => 200, 'token' => $token->raw_token, 'user ' => $result->extraInfo()]);
+                ->setJSON(['code' => 200, 'token' => $token->raw_token, 'user' => $result->extraInfo()]);
         } catch (Exception $error) {
             return $this->response
                 ->setJSON([
