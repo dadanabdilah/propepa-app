@@ -140,8 +140,7 @@
                             <div class="card">
                                 <img src="<?= base_url('assets/images/articles/' . $article->thumbnail) ?>" class="card-img-top img-fluid" alt="<?= $article->title ?>">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="<?= site_url('artikel/' . $article->slug) ?>"><?= $article->title ?></a></h5>
-                                    <p class="card-text"><?= substr($article->content, 0, 50) ?></p>
+                                    <h4 class="card-title"><a href="<?= site_url('artikel/' . $article->slug) ?>"><?= $article->title ?></a></h4>
                                 </div>
                             </div>
                         </div>
