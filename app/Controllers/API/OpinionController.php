@@ -3,15 +3,28 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\I18n\Time;
 
 use App\Models\OpinionModel;
 
 use Pusher\Pusher;
+use Kreait\Firebase\Factory;
 
 use Exception;
 
 class OpinionController extends ResourceController
 {
+    private $database;
+
+    public function __construct()
+    {
+        $firebase = (new Factory)
+            ->withServiceAccount('credential_firebase.json')
+            ->withDatabaseUri('https://propepa-cf3d3-default-rtdb.asia-southeast1.firebasedatabase.app');
+
+        $this->database = $firebase->createDatabase();
+    }
+
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -21,7 +34,7 @@ class OpinionController extends ResourceController
     {
         try {
             $data = [
-                'opinions' => OpinionModel::with('User')->get(),
+                'opinions' => $this->database->getReference('opinions')->getValue(),
                 'PUSHER_APP_KEY' => env('PUSHER_APP_KEY')
             ];
 
@@ -63,6 +76,18 @@ class OpinionController extends ResourceController
      */
     public function create()
     {
+        // Firebase
+         $request = [
+            'message' => $this->request->getPost('message'),
+            'user_id' => auth()->id(),
+            'user_name' => auth()->user()->name,
+            'created_at' =>  Time::now('Asia/Jakarta', 'id_ID')
+        ];
+
+        $message = $this->database->getReference('opinions')->push($request);
+        
+          /*
+        MySQL
         OpinionModel::create([
             'opinion' => $this->request->getPost('opinion'),
             'user_id' => auth()->id()
@@ -70,6 +95,12 @@ class OpinionController extends ResourceController
 
         $data = [
             'opinions' => OpinionModel::with('User')->latest()->first()
+        ];
+        */
+
+         $data = [
+            'opinions' => $this->database->getReference('opinions/'.$message->getKey())->getValue(),
+            'key' => $message->getKey()
         ];
 
         $options = array(
