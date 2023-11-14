@@ -10,6 +10,7 @@
         "codeigniter4/shield": "dev-develop",
         "datamweb/shield-oauth": "dev-develop",
         "illuminate/database": "^10.21",
+        "kreait/firebase-php": "^7.6",
         "nesbot/carbon": "^2.71",
         "pusher/pusher-php-server": "^7.2",
         "tatter/visits": "^2.0"

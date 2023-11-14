@@ -37,36 +37,38 @@ Berbagi Opini
                             <div class="chat-box p-9" style="height: calc(100vh - 400px)" data-simplebar data-simplebar-auto-hide="false">
                                 <div class="chat-list chat active-chat">
                                     <div id="chat-room">
-                                        <?php foreach ($opinions as $opinion) : ?>
-                                            <?php if ($opinion->user_id != auth()->id()) : ?>
+                                       <?php if($opinions): ?>
+                                          <?php foreach ($opinions as $key => $opinion) : ?>
+                                            <?php if ($opinion['user_id'] != auth()->id()) : ?>
                                                 <div class="hstack gap-3 align-items-start mb-7 justify-content-start">
-                                                    <img src="https://ui-avatars.com/api/?name=<?= $opinion->User->name ?>" alt="user" width="40" height="40" class="rounded-circle" />
+                                                    <img src="https://ui-avatars.com/api/?name=<?= $opinion['user_name'] ?>" alt="user" width="40" height="40" class="rounded-circle" />
                                                     <div>
-                                                        <h6 class="fs-2 text-muted"><?= $opinion->User->name ?></h6>
-                                                        <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> <?= $opinion->opinion ?></div>
+                                                        <h6 class="fs-2 text-muted"><?= $opinion['user_name'] ?></h6>
+                                                        <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> <?= $opinion['message'] ?></div>
                                                     </div>
                                                 </div>
                                             <?php endif ?>
 
-                                            <?php if ($opinion->user_id == auth()->id()) : ?>
+                                            <?php if ($opinion['user_id'] == auth()->id()) : ?>
                                                 <div class="hstack gap-3 align-items-start mb-7 justify-content-end">
                                                     <div class="text-end">
-                                                        <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> <?= $opinion->opinion ?></div>
+                                                        <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> <?= $opinion['message'] ?></div>
                                                     </div>
                                                 </div>
                                             <?php endif ?>
                                         <?php endforeach ?>
+                                      <?php endif ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="py-6 border-top chat-send-message-footer">
                                 <div class="w-100">
-                                    <form action="<?= site_url('admin/opinions') ?>" method="POST" id="opinion">
+                                    <form action="<?= site_url('admin/opinions') ?>" method="POST" id="message">
                                         <?= csrf_field() ?>
 
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center gap-2 w-85">
-                                                <textarea name="opinion" class="form-control text-muted border-0 p-0 ms-2" rows="5" placeholder="Ketik Pesan" id="text-opinion"></textarea>
+                                                <textarea name="message" class="form-control text-muted border-0 p-0 ms-2" rows="5" placeholder="Ketik Pesan" id="text-opinion"></textarea>
                                             </div>
                                             <ul class="list-unstyledn mb-0 d-flex align-items-center">
                                                 <li><button type="button" class="btn text-dark px-2 fs-7 bg-hover-white nav-icon-hover position-relative z-index-5 " id="btn-submit"><i class="ti ti-send"></i></button></li>
@@ -99,7 +101,7 @@ Berbagi Opini
                 url = $form.attr("action");
 
             let posting = $.post(url, {
-                opinion: opinionText
+                message: opinionText
             });
 
             $('textarea').val('')
@@ -110,11 +112,11 @@ Berbagi Opini
                 e.preventDefault();
 
                 let $form = $(this),
-                    opinionText = $('#text-opinion').val(),
+                    opinionText = $('#text-message').val(),
                     url = $form.attr("action");
 
                 let posting = $.post(url, {
-                    opinion: opinionText
+                    message: opinionText
                 });
 
                 $('textarea').val('')
@@ -159,16 +161,16 @@ Berbagi Opini
 
         chatDOM += `
            ${data.opinions.user_id != userId ? `<div class="hstack gap-3 align-items-start mb-7 justify-content-start">
-                    <img src="https://ui-avatars.com/api/?name=${data.opinions.user.name}" alt="user" width="40" height="40" class="rounded-circle" />
+                    <img src="https://ui-avatars.com/api/?name=${data.opinions.user_name}" alt="user" width="40" height="40" class="rounded-circle" />
                     <div>
-                        <h6 class="fs-2 text-muted">${data.opinions.user.name}</h6>
-                        <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> ${data.opinions.opinion}</div>
+                        <h6 class="fs-2 text-muted">${data.opinions.user_name}</h6>
+                        <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> ${data.opinions.message}</div>
                     </div>
                 </div>` : ''}
 
             ${data.opinions.user_id == userId ? `<div class="hstack gap-3 align-items-start mb-7 justify-content-end">
                     <div class="text-end">
-                        <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> ${data.opinions.opinion}</div>
+                        <div class="p-2 bg-light-danger text-dark rounded-1 d-inline-block fs-3"> ${data.opinions.message}</div>
                     </div>
                 </div>` : '' }
            `
